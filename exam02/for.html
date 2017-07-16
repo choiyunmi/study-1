@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>exam02 - for</title>
+<link rel="stylesheet" href="common.css" />
+<script src="../js/lib/jquery-1.9.1.min.js"></script>
+<script>
+$(function(){
+	// exam1 [s]
+	var elExam1 = $('.exam_q').eq(0),
+		i = 0,
+		sResult1 = '';
+	
+	while (i < 5) {
+		sResult1 += '<div><input type="checkbox"></div>';
+		i++;
+	}
+
+	elExam1.append(sResult1);
+	// exam1 [e]
+
+
+	// exam2 [s]
+	var elExam2 = $('.exam_q').eq(1),
+		sResult2 = '';
+
+	for (var i = 0; i < 5; i++){
+		if (i % 2 == 0) {
+			sResult2 += '<div><input type="checkbox"></div>';
+		} else {
+			sResult2 += '<div><input type="text"></div>';
+		}
+	}
+
+	elExam2.append(sResult2);
+	// exam2 [e]
+
+	// exam3 [s]
+	var elExam3 = $('.exam_q').eq(2),
+		sResult3 = '';
+
+	for (var i = 1; i < 10; i++){
+		sResult3 += '8 X ' + i + ' = ' + 8 * i + ' <br>';
+	}
+
+	elExam3.append(sResult3);
+	// exam3 [e]
+
+	// exam4 [s]
+	var elExam4 = $('.exam_q').eq(3),
+		i = 2,
+		sResult4 ='';
+
+	while (i < 10) {
+		for (var j = 1; j < 10; j++) {
+			sResult4 += i + ' X ' + j + ' = ' + i * j + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+		}
+		sResult4 += '<br>';
+		i++;
+	}
+
+	elExam4.append(sResult4);
+	// exam4 [e]
+});
+</script>
+</head>
+<body>
+<!-- wrapper [s] -->
+<div id="wrapper">
+	<!-- header [s] -->
+	<div id="header">
+	</div>
+	<!-- header [e] -->
+	<hr />
+	<!-- container [s] -->
+	<div id="container">
+		<div class="exam_wrap">
+			<h1>Q. while 문으로 5개의 input 을 출력하세요.</h1>
+			<div class="exam_q">
+			</div>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. for 문으로 5개의 input 을 만들되, 짝수는 text / 홀수는 checkbox 를 출력하세요.</h1>
+			<div class="exam_q">
+			</div>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. for 문으로 구구단 8단을 출력하세요.</h1>
+			<div class="exam_q">
+			</div>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. for/while 문 2개로 구구단을 출력하세요.</h1>
+			<div class="exam_q">
+			</div>
+		</div>
+	</div>
+	<!-- container [e] -->
+	<hr />
+	<!-- footer [s] -->
+	<div id="footer">
+	</div>
+	<!-- footer [e] -->
+</div>
+<!-- wrapper [e] -->
+</body>
+</html>
