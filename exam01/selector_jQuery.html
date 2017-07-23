@@ -3,9 +3,145 @@
 <head>
 <meta charset="utf-8">
 <title>exam01 - seletor jQuery</title>
-<link rel="stylesheet" href="common.css" />
-<script src="../js/lib/jquery-1.9.1.min.js"></script>
-<script>
+<link rel="stylesheet" type="text/css" href="http://ts.daumcdn.net/custom/blog/35/353808/skin/images/shCoreDefault.css" />
+<link rel="stylesheet" type="text/css" href="../css/common.css" />
+<link rel="stylesheet" type="text/css" href="../css/exam01.css" />
+<!-- SyntaxHighlighter -->
+<script type="text/javascript" src="http://ts.daumcdn.net/custom/blog/35/353808/skin/images/shCore.js"></script>
+<script type="text/javascript" src="http://ts.daumcdn.net/custom/blog/35/353808/skin/images/shBrushXml.js"></script>
+<script type="text/javascript" src="http://ts.daumcdn.net/custom/blog/35/353808/skin/images/shBrushCss.js"></script>
+<script type="text/javascript" src="http://ts.daumcdn.net/custom/blog/35/353808/skin/images/shBrushJScript.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.defaults['quick-code'] = false;
+SyntaxHighlighter.all();
+</script>
+</head>
+<body>
+<!-- wrapper [s] -->
+<div id="wrapper">
+	<!-- header [s] -->
+	<div id="header">
+	</div>
+	<!-- header [e] -->
+	<hr />
+	<!-- container [s] -->
+	<div id="container">
+		<div class="exam_wrap">
+			<h1>Q. <strong class="point">모든 Elements</strong>를 선택</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<div>div</div>
+				<p>p</p>
+				<span>span</span>
+				<em>em<span>span</span></em>
+			</div>
+			<button type="button">결과보기</button>
+			<p>Tip) $("*")</p>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. <strong class="point">태그명이 span 인 Elements</strong>를 선택</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<div>div</div>
+				<p>p</p>
+				<span>span</span>
+				<em>em<span>span</span></em>
+			</div>
+			<button type="button">결과보기</button>
+			<p>Tip) $("E")</p>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. <strong class="point">em의 자손</strong>이면서 <strong class="point">태그명이 span 인 Elements</strong>를 선택</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<div>div</div>
+				<p>p</p>
+				<span>span</span>
+				<em>em<span>span</span></em>
+			</div>
+			<button type="button">결과보기</button>
+			<p>Tip) $("E F")</p>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. <strong class="point">부모(.exam_q)의 바로 아래 자식</strong>이면서 <strong class="point">태그명이 span 인 Elements</strong>를 선택</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<div>div</div>
+				<p>p</p>
+				<span>span</span>
+				<em>em<span>span</span></em>
+			</div>
+			<button type="button">결과보기</button>
+			<p>Tip) $("E>F")</p>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. <strong class="point">div의 형제 Elements</strong>이면서, <strong class="point">바로 다음에 나오는 p Elements</strong>를 선택</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<div>div</div>
+				<p>p</p>
+				<span>span</span>
+				<em>em<span>span</span></em>
+			</div>
+			<button type="button">결과보기</button>
+			<p>Tip) $("E+F")</p>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. <strong class="point">div의 형제 Elements</strong>이면서, <strong class="point">다음에 나오는 모든 span Elements</strong>를 선택</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<div>div</div>
+				<p>p</p>
+				<span>span</span>
+				<em>em<span>span</span></em>
+			</div>
+			<button type="button">결과보기</button>
+			<p>Tip) $("E~F")</p>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. <strong class="point">클래스명이 active인 모든 Elements</strong>를 선택</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<div>div</div>
+				<div class="active">div</div>
+				<p class="active">p</p>
+				<span class="active">span</span>
+				<span>span</span>
+			</div>
+			<button type="button">결과보기</button>
+			<p>Tip) $("E.C") E의 생략은 *.C와 동일함.</p>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. <strong class="point">아이디명이 active인 Element</strong>를 선택</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<div id="active">div</div>
+				<div class="active">div</div>
+				<p class="active">p</p>
+				<span class="active">span</span>
+				<span>span</span>
+			</div>
+			<button type="button">결과보기</button>
+			<p>Tip) $("E#I") E의 생략은 *#I와 동일함.</p>
+		</div>
+	</div>
+	<!-- container [e] -->
+	<div class="source_view">
+<pre class="brush:js toolbar:false">
+$(function(){
+	var examViewBtn = $('.exam_wrap button'),
+		seletor = ['*', 'span', 'em span', '> span', 'div + p', 'div ~ span', '.active', '#active'];
+
+	examViewBtn.on('click', function(){
+		var index = examViewBtn.index(this),
+			target = $('.exam_q').eq(index);
+
+		target.find(seletor[index]).css('background','yellow');
+	});
+});</pre>
+	</div>
+	<hr />
+	<!-- footer [s] -->
+	<div id="footer">
+	</div>
+	<!-- footer [e] -->
+</div>
+<!-- wrapper [e] -->
+
+<script type="text/javascript" src="../js/lib/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
 // jQuery code
 $(function(){
 	// var examObj1 = $('.exam_wrap:eq(0)');
@@ -59,115 +195,5 @@ $(function(){
 	});
 });
 </script>
-</head>
-<body>
-<!-- wrapper [s] -->
-<div id="wrapper">
-	<!-- header [s] -->
-	<div id="header">
-	</div>
-	<!-- header [e] -->
-	<hr />
-	<!-- container [s] -->
-	<div id="container">
-		<div class="exam_wrap">
-			<h1>Q. <strong class="point">모든 Elements</strong>를 선택</h1>
-			<div class="exam_q"><!-- 부모 -->
-				<div>div</div>
-				<p>p</p>
-				<span>span</span>
-				<em>em<span>span</span></em>
-			</div>
-			<button type="button">view</button>
-			<p>Tip) $("*")</p>
-		</div>
-		<div class="exam_wrap">
-			<h1>Q. <strong class="point">태그명이 span 인 Elements</strong>를 선택</h1>
-			<div class="exam_q"><!-- 부모 -->
-				<div>div</div>
-				<p>p</p>
-				<span>span</span>
-				<em>em<span>span</span></em>
-			</div>
-			<button type="button">view</button>
-			<p>Tip) $("E")</p>
-		</div>
-		<div class="exam_wrap">
-			<h1>Q. <strong class="point">em의 자손</strong>이면서 <strong class="point">태그명이 span 인 Elements</strong>를 선택</h1>
-			<div class="exam_q"><!-- 부모 -->
-				<div>div</div>
-				<p>p</p>
-				<span>span</span>
-				<em>em<span>span</span></em>
-			</div>
-			<button type="button">view</button>
-			<p>Tip) $("E F")</p>
-		</div>
-		<div class="exam_wrap">
-			<h1>Q. <strong class="point">부모(.exam_q)의 바로 아래 자식</strong>이면서 <strong class="point">태그명이 span 인 Elements</strong>를 선택</h1>
-			<div class="exam_q"><!-- 부모 -->
-				<div>div</div>
-				<p>p</p>
-				<span>span</span>
-				<em>em<span>span</span></em>
-			</div>
-			<button type="button">view</button>
-			<p>Tip) $("E>F")</p>
-		</div>
-		<div class="exam_wrap">
-			<h1>Q. <strong class="point">div의 형제 Elements</strong>이면서, <strong class="point">바로 다음에 나오는 p Elements</strong>를 선택</h1>
-			<div class="exam_q"><!-- 부모 -->
-				<div>div</div>
-				<p>p</p>
-				<span>span</span>
-				<em>em<span>span</span></em>
-			</div>
-			<button type="button">view</button>
-			<p>Tip) $("E+F")</p>
-		</div>
-		<div class="exam_wrap">
-			<h1>Q. <strong class="point">div의 형제 Elements</strong>이면서, <strong class="point">다음에 나오는 모든 span Elements</strong>를 선택</h1>
-			<div class="exam_q"><!-- 부모 -->
-				<div>div</div>
-				<p>p</p>
-				<span>span</span>
-				<em>em<span>span</span></em>
-			</div>
-			<button type="button">view</button>
-			<p>Tip) $("E~F")</p>
-		</div>
-		<div class="exam_wrap">
-			<h1>Q. <strong class="point">클래스명이 active인 모든 Elements</strong>를 선택</h1>
-			<div class="exam_q"><!-- 부모 -->
-				<div>div</div>
-				<div class="active">div</div>
-				<p class="active">p</p>
-				<span class="active">span</span>
-				<span>span</span>
-			</div>
-			<button type="button">view</button>
-			<p>Tip) $("E.C") E의 생략은 *.C와 동일함.</p>
-		</div>
-		<div class="exam_wrap">
-			<h1>Q. <strong class="point">아이디명이 active인 Element</strong>를 선택</h1>
-			<div class="exam_q"><!-- 부모 -->
-				<div id="active">div</div>
-				<div class="active">div</div>
-				<p class="active">p</p>
-				<span class="active">span</span>
-				<span>span</span>
-			</div>
-			<button type="button">view</button>
-			<p>Tip) $("E#I") E의 생략은 *#I와 동일함.</p>
-		</div>
-	</div>
-	<!-- container [e] -->
-	<hr />
-	<!-- footer [s] -->
-	<div id="footer">
-	</div>
-	<!-- footer [e] -->
-</div>
-<!-- wrapper [e] -->
 </body>
 </html>

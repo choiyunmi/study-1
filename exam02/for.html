@@ -3,66 +3,17 @@
 <head>
 <meta charset="utf-8">
 <title>exam02 - for</title>
-<link rel="stylesheet" href="common.css" />
-<script src="../js/lib/jquery-1.9.1.min.js"></script>
-<script>
-$(function(){
-	// exam1 [s]
-	var elExam1 = $('.exam_q').eq(0),
-		i = 0,
-		sResult1 = '';
-	
-	while (i < 5) {
-		sResult1 += '<div><input type="checkbox"></div>';
-		i++;
-	}
-
-	elExam1.append(sResult1);
-	// exam1 [e]
-
-
-	// exam2 [s]
-	var elExam2 = $('.exam_q').eq(1),
-		sResult2 = '';
-
-	for (var i = 0; i < 5; i++){
-		if (i % 2 == 0) {
-			sResult2 += '<div><input type="checkbox"></div>';
-		} else {
-			sResult2 += '<div><input type="text"></div>';
-		}
-	}
-
-	elExam2.append(sResult2);
-	// exam2 [e]
-
-	// exam3 [s]
-	var elExam3 = $('.exam_q').eq(2),
-		sResult3 = '';
-
-	for (var i = 1; i < 10; i++){
-		sResult3 += '8 X ' + i + ' = ' + 8 * i + ' <br>';
-	}
-
-	elExam3.append(sResult3);
-	// exam3 [e]
-
-	// exam4 [s]
-	var elExam4 = $('.exam_q').eq(3),
-		i = 2,
-		sResult4 ='';
-
-	while (i < 10) {
-		for (var j = 1; j < 10; j++) {
-			sResult4 += i + ' X ' + j + ' = ' + i * j + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-		}
-		sResult4 += '<br>';
-		i++;
-	}
-
-	elExam4.append(sResult4);
-	// exam4 [e]
-});
+<link rel="stylesheet" type="text/css" href="http://ts.daumcdn.net/custom/blog/35/353808/skin/images/shCoreDefault.css" />
+<link rel="stylesheet" type="text/css" href="../css/common.css" />
+<link rel="stylesheet" type="text/css" href="../css/exam02.css" />
+<!-- SyntaxHighlighter -->
+<script type="text/javascript" src="http://ts.daumcdn.net/custom/blog/35/353808/skin/images/shCore.js"></script>
+<script type="text/javascript" src="http://ts.daumcdn.net/custom/blog/35/353808/skin/images/shBrushXml.js"></script>
+<script type="text/javascript" src="http://ts.daumcdn.net/custom/blog/35/353808/skin/images/shBrushCss.js"></script>
+<script type="text/javascript" src="http://ts.daumcdn.net/custom/blog/35/353808/skin/images/shBrushJScript.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.defaults['quick-code'] = false;
+SyntaxHighlighter.all();
 </script>
 </head>
 <body>
@@ -97,6 +48,68 @@ $(function(){
 		</div>
 	</div>
 	<!-- container [e] -->
+	<div class="source_view">
+<pre class="brush:js toolbar:false">
+$(function(){
+	// exam1 [s]
+	var elExam1 = $('.exam_q').eq(0),
+		i = 0,
+		sResult1 = '';
+	
+	while (i < 5) {
+		sResult1 += '<div><input type="checkbox"></div>';
+		i++;
+	}
+
+	elExam1.append(sResult1);
+	// exam1 [e]
+
+
+	// exam2 [s]
+	var elExam2 = $('.exam_q').eq(1),
+		sResult2 = '';
+
+	for (var i = 0; i < 5; i++){
+		if (i % 2 == 0) {
+			sResult2 += '<div><input type="checkbox"></div>';
+		} else {
+			sResult2 += '<div><input type="text"></div>';
+		}
+	}
+
+	elExam2.append(sResult2);
+	// exam2 [e]
+
+
+	// exam3 [s]
+	var elExam3 = $('.exam_q').eq(2),
+		sResult3 = '';
+
+	for (var i = 1; i < 10; i++){
+		sResult3 += '8 X ' + i + ' = ' + 8 * i + ' <br>';
+	}
+
+	elExam3.append(sResult3);
+	// exam3 [e]
+	
+
+	// exam4 [s]
+	var elExam4 = $('.exam_q').eq(3),
+		i = 2,
+		sResult4 ='';
+
+	while (i < 10) {
+		for (var j = 1; j < 10; j++) {
+			sResult4 += i + ' X ' + j + ' = ' + i * j + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+		}
+		sResult4 += '<br>';
+		i++;
+	}
+
+	elExam4.append(sResult4);
+	// exam4 [e]
+});</pre>
+	</div>
 	<hr />
 	<!-- footer [s] -->
 	<div id="footer">
@@ -104,5 +117,68 @@ $(function(){
 	<!-- footer [e] -->
 </div>
 <!-- wrapper [e] -->
+
+<script type="text/javascript" src="../js/lib/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	// exam1 [s]
+	var elExam1 = $('.exam_q').eq(0),
+		i = 0,
+		sResult1 = '';
+	
+	while (i < 5) {
+		sResult1 += '<div><input type="checkbox"></div>';
+		i++;
+	}
+
+	elExam1.append(sResult1);
+	// exam1 [e]
+
+
+	// exam2 [s]
+	var elExam2 = $('.exam_q').eq(1),
+		sResult2 = '';
+
+	for (var i = 0; i < 5; i++){
+		if (i % 2 == 0) {
+			sResult2 += '<div><input type="checkbox"></div>';
+		} else {
+			sResult2 += '<div><input type="text"></div>';
+		}
+	}
+
+	elExam2.append(sResult2);
+	// exam2 [e]
+
+
+	// exam3 [s]
+	var elExam3 = $('.exam_q').eq(2),
+		sResult3 = '';
+
+	for (var i = 1; i < 10; i++){
+		sResult3 += '8 X ' + i + ' = ' + 8 * i + ' <br>';
+	}
+
+	elExam3.append(sResult3);
+	// exam3 [e]
+	
+
+	// exam4 [s]
+	var elExam4 = $('.exam_q').eq(3),
+		i = 2,
+		sResult4 ='';
+
+	while (i < 10) {
+		for (var j = 1; j < 10; j++) {
+			sResult4 += i + ' X ' + j + ' = ' + i * j + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+		}
+		sResult4 += '<br>';
+		i++;
+	}
+
+	elExam4.append(sResult4);
+	// exam4 [e]
+});
+</script>
 </body>
 </html>
