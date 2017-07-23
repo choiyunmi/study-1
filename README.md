@@ -2,7 +2,7 @@
 
 - 날짜 : 7/4 ~ 8/29 (주 1회(화) / 총 8회)
 - 강사 : 이환 책임님
-- 참여자 : SE UI개발팀 전원
+- 참여자 : SE UI개발팀
 
 ----
 
@@ -19,3 +19,7 @@
 - for : https://hayoungkkim.github.io/study/exam02/for.html
 - if : https://hayoungkkim.github.io/study/exam02/if.html
 - if(ssg style) : https://hayoungkkim.github.io/study/exam02/if2.html
+
+## exam03
+- array : https://hayoungkkim.github.io/study/exam03/array.html
+- object : https://hayoungkkim.github.io/study/exam03/object.html
