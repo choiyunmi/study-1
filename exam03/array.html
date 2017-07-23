@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>exam03 - array</title>
+<link rel="stylesheet" type="text/css" href="http://ts.daumcdn.net/custom/blog/35/353808/skin/images/shCoreDefault.css" />
+<link rel="stylesheet" type="text/css" href="../css/common.css" />
+<!-- SyntaxHighlighter -->
+<script type="text/javascript" src="http://ts.daumcdn.net/custom/blog/35/353808/skin/images/shCore.js"></script>
+<script type="text/javascript" src="http://ts.daumcdn.net/custom/blog/35/353808/skin/images/shBrushXml.js"></script>
+<script type="text/javascript" src="http://ts.daumcdn.net/custom/blog/35/353808/skin/images/shBrushCss.js"></script>
+<script type="text/javascript" src="http://ts.daumcdn.net/custom/blog/35/353808/skin/images/shBrushJScript.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.defaults['quick-code'] = false;
+SyntaxHighlighter.all();
+</script>
+</head>
+<body>
+<!-- wrapper [s] -->
+<div id="wrapper">
+	<!-- header [s] -->
+	<div id="header">
+	</div>
+	<!-- header [e] -->
+	<hr />
+	<!-- container [s] -->
+	<div id="container">
+		<div class="exam_wrap">
+			<h1>Q. 배열에 본인 이름을 한글자씩 담은 다음 문자열로 출력하세요.</h1>
+			<div class="exam_q">예시) ['Lee', 'Hwan'] => 'Lee Hwan'</div>
+			<p>['Kim', 'Hayoung']</p>
+			<button type="button">버튼</button>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. 'question' 문자열을 거꾸로 출력하세요. (for문 사용)</h1>
+			<div class="exam_q">예시) 'question' => 'noitseuq'</div>
+			<p>question</p>
+			<button type="button">버튼</button>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. [40, 100, 1, 5, 25, 10] 에서 가장 큰 수 순서대로 index 를 배열로 출력하세요.  (for/if문 사용)</h1>
+			<div class="exam_q">예시) [40, 100, 1, 5, 25, 10] => [1, 0, 4, 5, 3, 2]</div>
+			<p>-</p>
+			<button type="button">버튼</button>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. 2중 배열로 구구단을 만드세요. (for문 사용)</h1>
+			<div class="exam_q">예시) [[2,4,6...],[3,6,9...]...]</div>
+			<p>-</p>
+			<button type="button">버튼</button>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. 배열에 숫자 0 ~ 9까지 담아보세요. (for문 사용)</h1>
+			<div class="exam_q">예시) [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</div>
+			<p>-</p>
+			<button type="button">버튼</button>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. 배열에 숫자 0 ~ 5 사이의 랜덤한 숫자를 6개 담아보세요. (for문 사용)</h1>
+			<div class="exam_q">예시) [4, 2, 3, 2, 3, 0]</div>
+			<p>-</p>
+			<button type="button">버튼</button>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. 배열에 숫자 0 ~ 9까지 담고, 버튼 클릭시 랜덤한 숫자를 하나씩 빼주세요.</h1>
+			<div class="exam_q">예시) [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] => [0, 1, 2, 3, 4, 5, 7, 8, 9] => [0, 1, 3, 4, 5, 7, 8, 9]</div>
+			<p>-</p>
+			<button type="button">버튼</button>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. 배열에 숫자 0 ~ 5 사이의 랜덤한 숫자를 중복되는 값이 없도록 6개 담아보세요. (for/if문 사용)</h1>
+			<div class="exam_q">예시) [4, 2, 3, 1, 5, 0]</div>
+			<p>-</p>
+			<button type="button">버튼</button>
+		</div>
+	</div>
+	<!-- container [e] -->
+	<div class="source_view">
+<pre class="brush:js toolbar:false">
+var exam = exam || {};
+exam.View = exam.View || {};
+
+exam.View.exam1Array = function() {
+	this.init();
+};
+
+exam.View.exam1Array.prototype = {
+	aDefault: ['Kim', 'Hayoung'],
+	init: function() {
+		this._assignElements();
+		this._attachEventHandlers();
+	},
+	_assignElements: function() {
+		this._welExamWrap = $('.exam_wrap').eq(0);
+		this._welExamResult = this._welExamWrap.find('p');
+		this._welExamBtn = this._welExamWrap.find('button');
+	},
+	_attachEventHandlers: function() {
+		this._welExamBtn.on('click', $.proxy(this._onClickBtn, this));
+	},
+	_onClickBtn: function() {
+		this._welExamResult.text(this.aDefault.join(' ')).css('border-color', '#ff5b59');
+	}
+};
+
+exam.View.exam2Array = function() {
+	this.init();
+};
+
+exam.View.exam2Array.prototype = {
+	sDefault: 'question',
+	init: function() {
+		this._assignElements();
+		this._attachEventHandlers();
+	},
+	_assignElements: function() {
+		this._welExamWrap = $('.exam_wrap').eq(1);
+		this._welExamResult = this._welExamWrap.find('p');
+		this._welExamBtn = this._welExamWrap.find('button');
+	},
+	_attachEventHandlers: function() {
+		this._welExamBtn.on('click', $.proxy(this._onClickBtn, this));
+	},
+	_onClickBtn: function() {
+		// this._welExamResult.text(this.sDefault.split('').reverse().join(''));
+
+		var aTemp = [];
+		
+		for (var i = 0, max = this.sDefault.length; i < max; i++){
+			aTemp.push(this.sDefault.charAt(i));
+		}
+
+		this._welExamResult.text(aTemp.reverse().join('')).css('border-color', '#ff5b59');
+	}
+};
+
+exam.View.exam3Array = function() {
+	this.init();
+};
+
+exam.View.exam3Array.prototype = {
+	aDefault: [40, 100, 1, 5, 25, 10],
+	init: function() {
+		this._assignElements();
+		this._attachEventHandlers();
+	},
+	_assignElements: function() {
+		this._welExamWrap = $('.exam_wrap').eq(2);
+		this._welExamResult = this._welExamWrap.find('p');
+		this._welExamBtn = this._welExamWrap.find('button');
+	},
+	_attachEventHandlers: function() {
+		this._welExamBtn.on('click', $.proxy(this._onClickBtn, this));
+	},
+	_onClickBtn: function() {
+		var aResult = [],
+			aDefaultCopy = this.aDefault.slice();
+
+		aDefaultCopy.sort(function(a, b) {
+			return b - a;
+		});
+
+		for (var i = 0, max = this.aDefault.length; i < max; i++){
+			aResult.push($.inArray(aDefaultCopy[i], this.aDefault));
+		}
+
+		this._welExamResult.text(aResult).css('border-color', '#ff5b59');
+	}
+};
+
+exam.View.exam4Array = function() {
+	this.init();
+};
+
+exam.View.exam4Array.prototype = {
+	init: function() {
+		this._assignElements();
+		this._attachEventHandlers();
+	},
+	_assignElements: function() {
+		this._welExamWrap = $('.exam_wrap').eq(3);
+		this._welExamResult = this._welExamWrap.find('p');
+		this._welExamBtn = this._welExamWrap.find('button');
+	},
+	_attachEventHandlers: function() {
+		this._welExamBtn.on('click', $.proxy(this._onClickBtn, this));
+	},
+	_onClickBtn: function() {
+		var aResult = [];
+
+		for (var i = 0; i < 8; i++) {
+			aResult[i] = [];
+			for (var j = 0; j < 9; j++) {
+				aResult[i][j] = (i + 2) * (j + 1);
+			}
+		}
+
+		this._welExamResult.text(aResult).css('border-color', '#ff5b59');
+	}
+};
+
+exam.View.exam5Array = function() {
+	this.init();
+};
+
+exam.View.exam5Array.prototype = {
+	init: function() {
+		this._assignElements();
+		this._attachEventHandlers();
+	},
+	_assignElements: function() {
+		this._welExamWrap = $('.exam_wrap').eq(4);
+		this._welExamResult = this._welExamWrap.find('p');
+		this._welExamBtn = this._welExamWrap.find('button');
+	},
+	_attachEventHandlers: function() {
+		this._welExamBtn.on('click', $.proxy(this._onClickBtn, this));
+	},
+	_onClickBtn: function() {
+		var aResult = [];
+
+		for (var i = 0; i < 10; i++) {
+			aResult.push(i);
+		}
+
+		this._welExamResult.text(aResult).css('border-color', '#ff5b59');
+	}
+};
+
+exam.View.exam6Array = function() {
+	this.init();
+};
+
+exam.View.exam6Array.prototype = {
+	init: function() {
+		this._assignElements();
+		this._attachEventHandlers();
+	},
+	_assignElements: function() {
+		this._welExamWrap = $('.exam_wrap').eq(5);
+		this._welExamResult = this._welExamWrap.find('p');
+		this._welExamBtn = this._welExamWrap.find('button');
+	},
+	_attachEventHandlers: function() {
+		this._welExamBtn.on('click', $.proxy(this._onClickBtn, this));
+	},
+	_onClickBtn: function() {
+		var aResult = [];
+
+		for (var i = 0; i < 6; i++) {
+			aResult.push(Math.floor((Math.random() * 6)));
+		}
+
+		this._welExamResult.text(aResult).css('border-color', '#ff5b59');
+	}
+};
+
+exam.View.exam7Array = function() {
+	this.init();
+};
+
+exam.View.exam7Array.prototype = {
+	aDefault: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+	init: function() {
+		this._assignElements();
+		this._attachEventHandlers();
+	},
+	_assignElements: function() {
+		this._welExamWrap = $('.exam_wrap').eq(6);
+		this._welExamResult = this._welExamWrap.find('p');
+		this._welExamBtn = this._welExamWrap.find('button');
+	},
+	_attachEventHandlers: function() {
+		this._welExamBtn.on('click', $.proxy(this._onClickBtn, this));
+	},
+	_onClickBtn: function() {
+		var nLenght = this.aDefault.length;
+
+		if (nLenght > 0) {
+			this.aDefault.splice(Math.floor((Math.random() * nLenght)), 1);
+		}
+
+		this._welExamResult.text(this.aDefault);	
+		this._welExamResult.css('border-color', '#ff5b59');
+	}
+};
+
+exam.View.exam8Array = function() {
+	this.init();
+};
+
+exam.View.exam8Array.prototype = {
+	init: function() {
+		this._assignElements();
+		this._attachEventHandlers();
+	},
+	_assignElements: function() {
+		this._welExamWrap = $('.exam_wrap').eq(7);
+		this._welExamResult = this._welExamWrap.find('p');
+		this._welExamBtn = this._welExamWrap.find('button');
+	},
+	_attachEventHandlers: function() {
+		this._welExamBtn.on('click', $.proxy(this._onClickBtn, this));
+	},
+	_onClickBtn: function() {
+		var aResult = [],
+			nRandom;
+
+		for (var i = 0; aResult.length < 6; i++) {
+			nRandom = Math.floor((Math.random() * 6));
+			if (aResult.indexOf(nRandom) === -1) {
+				aResult.push(nRandom);
+			}
+		}
+
+		this._welExamResult.text(aResult).css('border-color', '#ff5b59');
+	}
+};
+
+$(function() {
+	var oExamViewExam1Array = new exam.View.exam1Array();
+	var oExamViewExam2Array = new exam.View.exam2Array();
+	var oExamViewExam3Array = new exam.View.exam3Array();
+	var oExamViewExam4Array = new exam.View.exam4Array();
+	var oExamViewExam5Array = new exam.View.exam5Array();
+	var oExamViewExam6Array = new exam.View.exam6Array();
+	var oExamViewExam7Array = new exam.View.exam7Array();
+	var oExamViewExam8Array = new exam.View.exam8Array();
+});</pre>
+	</div>
+	<hr />
+	<!-- footer [s] -->
+	<div id="footer">
+	</div>
+	<!-- footer [e] -->
+</div>
+<!-- wrapper [e] -->
+
+<script type="text/javascript" src="../js/lib/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+var exam = exam || {};
+exam.View = exam.View || {};
+
+exam.View.exam1Array = function() {
+	this.init();
+};
+
+exam.View.exam1Array.prototype = {
+	aDefault: ['Kim', 'Hayoung'],
+	init: function() {
+		this._assignElements();
+		this._attachEventHandlers();
+	},
+	_assignElements: function() {
+		this._welExamWrap = $('.exam_wrap').eq(0);
+		this._welExamResult = this._welExamWrap.find('p');
+		this._welExamBtn = this._welExamWrap.find('button');
+	},
+	_attachEventHandlers: function() {
+		this._welExamBtn.on('click', $.proxy(this._onClickBtn, this));
+	},
+	_onClickBtn: function() {
+		this._welExamResult.text(this.aDefault.join(' ')).css('border-color', '#ff5b59');
+	}
+};
+
+exam.View.exam2Array = function() {
+	this.init();
+};
+
+exam.View.exam2Array.prototype = {
+	sDefault: 'question',
+	init: function() {
+		this._assignElements();
+		this._attachEventHandlers();
+	},
+	_assignElements: function() {
+		this._welExamWrap = $('.exam_wrap').eq(1);
+		this._welExamResult = this._welExamWrap.find('p');
+		this._welExamBtn = this._welExamWrap.find('button');
+	},
+	_attachEventHandlers: function() {
+		this._welExamBtn.on('click', $.proxy(this._onClickBtn, this));
+	},
+	_onClickBtn: function() {
+		// this._welExamResult.text(this.sDefault.split('').reverse().join(''));
+
+		var aTemp = [];
+		
+		for (var i = 0, max = this.sDefault.length; i < max; i++){
+			aTemp.push(this.sDefault.charAt(i));
+		}
+
+		this._welExamResult.text(aTemp.reverse().join('')).css('border-color', '#ff5b59');
+	}
+};
+
+exam.View.exam3Array = function() {
+	this.init();
+};
+
+exam.View.exam3Array.prototype = {
+	aDefault: [40, 100, 1, 5, 25, 10],
+	init: function() {
+		this._assignElements();
+		this._attachEventHandlers();
+	},
+	_assignElements: function() {
+		this._welExamWrap = $('.exam_wrap').eq(2);
+		this._welExamResult = this._welExamWrap.find('p');
+		this._welExamBtn = this._welExamWrap.find('button');
+	},
+	_attachEventHandlers: function() {
+		this._welExamBtn.on('click', $.proxy(this._onClickBtn, this));
+	},
+	_onClickBtn: function() {
+		var aResult = [],
+			aDefaultCopy = this.aDefault.slice();
+
+		aDefaultCopy.sort(function(a, b) {
+			return b - a;
+		});
+
+		for (var i = 0, max = this.aDefault.length; i < max; i++){
+			aResult.push($.inArray(aDefaultCopy[i], this.aDefault));
+		}
+
+		this._welExamResult.text(aResult).css('border-color', '#ff5b59');
+	}
+};
+
+exam.View.exam4Array = function() {
+	this.init();
+};
+
+exam.View.exam4Array.prototype = {
+	init: function() {
+		this._assignElements();
+		this._attachEventHandlers();
+	},
+	_assignElements: function() {
+		this._welExamWrap = $('.exam_wrap').eq(3);
+		this._welExamResult = this._welExamWrap.find('p');
+		this._welExamBtn = this._welExamWrap.find('button');
+	},
+	_attachEventHandlers: function() {
+		this._welExamBtn.on('click', $.proxy(this._onClickBtn, this));
+	},
+	_onClickBtn: function() {
+		var aResult = [];
+
+		for (var i = 0; i < 8; i++) {
+			aResult[i] = [];
+			for (var j = 0; j < 9; j++) {
+				aResult[i][j] = (i + 2) * (j + 1);
+			}
+		}
+
+		this._welExamResult.text(aResult).css('border-color', '#ff5b59');
+	}
+};
+
+exam.View.exam5Array = function() {
+	this.init();
+};
+
+exam.View.exam5Array.prototype = {
+	init: function() {
+		this._assignElements();
+		this._attachEventHandlers();
+	},
+	_assignElements: function() {
+		this._welExamWrap = $('.exam_wrap').eq(4);
+		this._welExamResult = this._welExamWrap.find('p');
+		this._welExamBtn = this._welExamWrap.find('button');
+	},
+	_attachEventHandlers: function() {
+		this._welExamBtn.on('click', $.proxy(this._onClickBtn, this));
+	},
+	_onClickBtn: function() {
+		var aResult = [];
+
+		for (var i = 0; i < 10; i++) {
+			aResult.push(i);
+		}
+
+		this._welExamResult.text(aResult).css('border-color', '#ff5b59');
+	}
+};
+
+exam.View.exam6Array = function() {
+	this.init();
+};
+
+exam.View.exam6Array.prototype = {
+	init: function() {
+		this._assignElements();
+		this._attachEventHandlers();
+	},
+	_assignElements: function() {
+		this._welExamWrap = $('.exam_wrap').eq(5);
+		this._welExamResult = this._welExamWrap.find('p');
+		this._welExamBtn = this._welExamWrap.find('button');
+	},
+	_attachEventHandlers: function() {
+		this._welExamBtn.on('click', $.proxy(this._onClickBtn, this));
+	},
+	_onClickBtn: function() {
+		var aResult = [];
+
+		for (var i = 0; i < 6; i++) {
+			aResult.push(Math.floor((Math.random() * 6)));
+		}
+
+		this._welExamResult.text(aResult).css('border-color', '#ff5b59');
+	}
+};
+
+exam.View.exam7Array = function() {
+	this.init();
+};
+
+exam.View.exam7Array.prototype = {
+	aDefault: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+	init: function() {
+		this._assignElements();
+		this._attachEventHandlers();
+	},
+	_assignElements: function() {
+		this._welExamWrap = $('.exam_wrap').eq(6);
+		this._welExamResult = this._welExamWrap.find('p');
+		this._welExamBtn = this._welExamWrap.find('button');
+	},
+	_attachEventHandlers: function() {
+		this._welExamBtn.on('click', $.proxy(this._onClickBtn, this));
+	},
+	_onClickBtn: function() {
+		var nLenght = this.aDefault.length;
+
+		if (nLenght > 0) {
+			this.aDefault.splice(Math.floor((Math.random() * nLenght)), 1);
+		}
+
+		this._welExamResult.text(this.aDefault);	
+		this._welExamResult.css('border-color', '#ff5b59');
+	}
+};
+
+exam.View.exam8Array = function() {
+	this.init();
+};
+
+exam.View.exam8Array.prototype = {
+	init: function() {
+		this._assignElements();
+		this._attachEventHandlers();
+	},
+	_assignElements: function() {
+		this._welExamWrap = $('.exam_wrap').eq(7);
+		this._welExamResult = this._welExamWrap.find('p');
+		this._welExamBtn = this._welExamWrap.find('button');
+	},
+	_attachEventHandlers: function() {
+		this._welExamBtn.on('click', $.proxy(this._onClickBtn, this));
+	},
+	_onClickBtn: function() {
+		var aResult = [],
+			nRandom;
+
+		for (var i = 0; aResult.length < 6; i++) {
+			nRandom = Math.floor((Math.random() * 6));
+			if (aResult.indexOf(nRandom) === -1) {
+				aResult.push(nRandom);
+			}
+		}
+
+		this._welExamResult.text(aResult).css('border-color', '#ff5b59');
+	}
+};
+
+$(function() {
+	var oExamViewExam1Array = new exam.View.exam1Array();
+	var oExamViewExam2Array = new exam.View.exam2Array();
+	var oExamViewExam3Array = new exam.View.exam3Array();
+	var oExamViewExam4Array = new exam.View.exam4Array();
+	var oExamViewExam5Array = new exam.View.exam5Array();
+	var oExamViewExam6Array = new exam.View.exam6Array();
+	var oExamViewExam7Array = new exam.View.exam7Array();
+	var oExamViewExam8Array = new exam.View.exam8Array();
+});
+</script>
+</body>
+</html>

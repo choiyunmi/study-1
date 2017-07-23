@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>exam03 - object</title>
+<link rel="stylesheet" type="text/css" href="http://ts.daumcdn.net/custom/blog/35/353808/skin/images/shCoreDefault.css" />
+<link rel="stylesheet" type="text/css" href="../css/common.css" />
+<!-- SyntaxHighlighter -->
+<script type="text/javascript" src="http://ts.daumcdn.net/custom/blog/35/353808/skin/images/shCore.js"></script>
+<script type="text/javascript" src="http://ts.daumcdn.net/custom/blog/35/353808/skin/images/shBrushXml.js"></script>
+<script type="text/javascript" src="http://ts.daumcdn.net/custom/blog/35/353808/skin/images/shBrushCss.js"></script>
+<script type="text/javascript" src="http://ts.daumcdn.net/custom/blog/35/353808/skin/images/shBrushJScript.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.defaults['quick-code'] = false;
+SyntaxHighlighter.all();
+</script>
+</head>
+<body>
+<!-- wrapper [s] -->
+<div id="wrapper">
+	<!-- header [s] -->
+	<div id="header">
+	</div>
+	<!-- header [e] -->
+	<hr />
+	<!-- container [s] -->
+	<div id="container">
+		<div class="exam_wrap">
+			<h1>Q. 함수 호출시 new 를 붙인 것과 안 붙인 것의 차이를 설명하세요.</h1>
+			<div class="exam_q">예시)<br>
+			var obj = function () {<br>
+			&nbsp;&nbsp;&nbsp;console.log(this);<br>
+			};<br>
+			obj();&nbsp;&nbsp;<span class="point">// window</span><br>
+			new obj();&nbsp;&nbsp;<span class="point">// obj</span>
+			</div>
+			<p>함수 호출시 new 연산자를 붙이면 함수 내 this는 <em class="point">생성된 객체 자신</em>이다.<br>함수 호출시 new 연산자를 붙이지 않으면 함수 내 this는 <em class="point">global object(웹브라우저에서는 window)</em>이다.</p>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. 객체 내에서의 this 를 설명하세요.</h1>
+			<div class="exam_q">예시)<br>
+			var obj = {<br>
+			&nbsp;&nbsp;&nbsp;init : function () {<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(this);<br>
+			&nbsp;&nbsp;&nbsp;}<br>
+			};<br>
+			obj.init();&nbsp;&nbsp;<span class="point">// obj</span>
+			</div>
+			<p>객체 내에서 this는 해당 객체를 가리킨다.</p>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. 객체 내의 다른 메서드를 호출해보세요.</h1>
+			<div class="exam_q">예시)<br>
+			var obj = {<br>
+			&nbsp;&nbsp;&nbsp;init : function () {<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em class="point">this.setElements();</em>&nbsp;&nbsp;// setElements 함수를 호출해봐요~<br>
+			&nbsp;&nbsp;&nbsp;},<br>
+			&nbsp;&nbsp;&nbsp;setElements : function () {<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('call');<br>
+			&nbsp;&nbsp;&nbsp;}<br>
+			};<br>
+			obj.init();
+			</div>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. 객체 내에서 다른 객체의 메서드를 호출해보세요.</h1>
+			<div class="exam_q">예시)<br>
+			var obj = {<br>
+			&nbsp;&nbsp;&nbsp;init : function () {<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em class="point">obj2.init();</em>&nbsp;&nbsp;// 객체 obj2 의 init 을 호출해봐요~<br>
+			&nbsp;&nbsp;&nbsp;}<br>
+			};<br>
+			var obj2 = {<br>
+			&nbsp;&nbsp;&nbsp;init : function () {<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('call');<br>
+			&nbsp;&nbsp;&nbsp;}<br>
+			};<br>
+			obj.init();
+			</div>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. 데이터 타입들을 모두 넣은후, 값들을 출력해보세요.</h1>
+			<div class="exam_q">예시)<br>
+			var obj = {<br>
+			&nbsp;&nbsp;&nbsp;func : function () {<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('func');<br>
+			&nbsp;&nbsp;&nbsp;},<br>
+			&nbsp;&nbsp;&nbsp;num : 3,<br>
+			&nbsp;&nbsp;&nbsp;<em class="point">str : '홍길동',</em><br>
+			&nbsp;&nbsp;&nbsp;<em class="point">bool : true,</em><br>
+			&nbsp;&nbsp;&nbsp;<em class="point">arr : [0, 1, 2],</em><br>
+			&nbsp;&nbsp;&nbsp;<em class="point">date : new Date()</em><br>
+			};<br>
+			console.log(obj.func);&nbsp;&nbsp;<em class="point">// function () { console.log('func'); }</em><br>
+			console.log(obj.num);&nbsp;&nbsp;<em class="point">// 3</em><br>
+			<em class="point">console.log(obj.str);&nbsp;&nbsp;// 홍길동</em><br>
+			<em class="point">console.log(obj.bool);&nbsp;&nbsp;// true</em><br>
+			<em class="point">console.log(obj.arr);&nbsp;&nbsp;// [0, 1, 2]</em><br>
+			<em class="point">console.log(obj.date);&nbsp;&nbsp;// Sun Jul 23 2017 22:35:01 GMT+0900 (대한민국 표준시)</em>
+			</div>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. 객체내의 모든 속성들의 값을 배열에 저장한후, abc 순으로 sorting 하여, 'abcdefg' 문자열로 출력해보세요.</h1>
+			<div class="exam_q">예시)<br>
+			var obj = {<br>
+			&nbsp;&nbsp;&nbsp;e : 'e',<br>
+			&nbsp;&nbsp;&nbsp;d : 'd',<br>
+			&nbsp;&nbsp;&nbsp;b : 'b',<br>
+			&nbsp;&nbsp;&nbsp;g : 'g',<br>
+			&nbsp;&nbsp;&nbsp;c : 'c',<br>
+			&nbsp;&nbsp;&nbsp;f : 'f',<br>
+			&nbsp;&nbsp;&nbsp;a : 'a'<br>
+			};
+			</div>
+			<p>-</p>
+			<button type="button">버튼</button>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. 'bcaebe' 문자열을 hasOwnProperty 를 사용해서, {a : 1, b : 2, c : 1, e : 2} 로 변경해보세요.</h1>
+			<p>-</p>
+			<button type="button">버튼</button>
+		</div>
+	</div>
+	<!-- container [e] -->
+	<div class="source_view">
+<pre class="brush:js toolbar:false">
+var exam = exam || {};
+exam.View = exam.View || {};
+
+exam.View.exam6Object = function() {
+	this.init();
+};
+
+exam.View.exam6Object.prototype = {
+	oDefault: {
+		e : 'e',
+		d : 'd',
+		b : 'b',
+		g : 'g',
+		c : 'c',
+		f : 'f',
+		a : 'a'
+	},
+	init: function() {
+		this._assignElements();
+		this._attachEventHandlers();
+	},
+	_assignElements: function() {
+		this._welExamWrap = $('.exam_wrap').eq(5);
+		this._welExamResult = this._welExamWrap.find('p');
+		this._welExamBtn = this._welExamWrap.find('button');
+	},
+	_attachEventHandlers: function() {
+		this._welExamBtn.on('click', $.proxy(this._onClickBtn, this));
+	},
+	_onClickBtn: function() {
+		var aTemp = [];
+
+		for (var key in this.oDefault) {
+			aTemp.push(this.oDefault[key]);
+		}
+
+		this._welExamResult.text(aTemp.sort().join('')).css('border-color', '#ff5b59');
+	}
+};
+
+exam.View.exam7Object = function() {
+	this.init();
+};
+
+exam.View.exam7Object.prototype = {
+	sDefault: 'bcaebe',
+	init: function() {
+		this._assignElements();
+		this._attachEventHandlers();
+	},
+	_assignElements: function() {
+		this._welExamWrap = $('.exam_wrap').eq(6);
+		this._welExamResult = this._welExamWrap.find('p');
+		this._welExamBtn = this._welExamWrap.find('button');
+	},
+	_attachEventHandlers: function() {
+		this._welExamBtn.on('click', $.proxy(this._onClickBtn, this));
+	},
+	_onClickBtn: function() {
+		var oResult = {},
+			aTemp = [];
+
+		aTemp = this.sDefault.split('').sort();
+
+		for (var i = 0, max = aTemp.length; i < max; i++) {
+			if (oResult.hasOwnProperty(aTemp[i])) {
+				oResult[aTemp[i]] += 1;
+			} else {
+				oResult[aTemp[i]] = 1;
+			}
+		}
+
+		this._welExamResult.text('console에서 확인하세요!').css('border-color', '#ff5b59');
+		console.log(oResult);
+	}
+};
+
+$(function() {
+	var oExamViewExam6Object = new exam.View.exam6Object();
+	var oExamViewExam7Object = new exam.View.exam7Object();
+});
+</pre>
+	</div>
+	<hr />
+	<!-- footer [s] -->
+	<div id="footer">
+	</div>
+	<!-- footer [e] -->
+</div>
+<!-- wrapper [e] -->
+
+<script type="text/javascript" src="../js/lib/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+var exam = exam || {};
+exam.View = exam.View || {};
+
+exam.View.exam6Object = function() {
+	this.init();
+};
+
+exam.View.exam6Object.prototype = {
+	oDefault: {
+		e : 'e',
+		d : 'd',
+		b : 'b',
+		g : 'g',
+		c : 'c',
+		f : 'f',
+		a : 'a'
+	},
+	init: function() {
+		this._assignElements();
+		this._attachEventHandlers();
+	},
+	_assignElements: function() {
+		this._welExamWrap = $('.exam_wrap').eq(5);
+		this._welExamResult = this._welExamWrap.find('p');
+		this._welExamBtn = this._welExamWrap.find('button');
+	},
+	_attachEventHandlers: function() {
+		this._welExamBtn.on('click', $.proxy(this._onClickBtn, this));
+	},
+	_onClickBtn: function() {
+		var aTemp = [];
+
+		for (var key in this.oDefault) {
+			aTemp.push(this.oDefault[key]);
+		}
+
+		this._welExamResult.text(aTemp.sort().join('')).css('border-color', '#ff5b59');
+	}
+};
+
+exam.View.exam7Object = function() {
+	this.init();
+};
+
+exam.View.exam7Object.prototype = {
+	sDefault: 'bcaebe',
+	init: function() {
+		this._assignElements();
+		this._attachEventHandlers();
+	},
+	_assignElements: function() {
+		this._welExamWrap = $('.exam_wrap').eq(6);
+		this._welExamResult = this._welExamWrap.find('p');
+		this._welExamBtn = this._welExamWrap.find('button');
+	},
+	_attachEventHandlers: function() {
+		this._welExamBtn.on('click', $.proxy(this._onClickBtn, this));
+	},
+	_onClickBtn: function() {
+		var oResult = {},
+			aTemp = [];
+
+		aTemp = this.sDefault.split('').sort();
+
+		for (var i = 0, max = aTemp.length; i < max; i++) {
+			if (oResult.hasOwnProperty(aTemp[i])) {
+				oResult[aTemp[i]] += 1;
+			} else {
+				oResult[aTemp[i]] = 1;
+			}
+		}
+
+		this._welExamResult.text('console에서 확인하세요!').css('border-color', '#ff5b59');
+		console.log(oResult);
+	}
+};
+
+$(function() {
+	var oExamViewExam6Object = new exam.View.exam6Object();
+	var oExamViewExam7Object = new exam.View.exam7Object();
+});
+</script>
+</body>
+</html>

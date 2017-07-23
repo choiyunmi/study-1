@@ -1,0 +1,8 @@
+@charset "utf-8";
+.exam_q ul{zoom:1}
+.exam_q ul:after{display:block;clear:both;content:''}
+.exam_q ul li{float:left;width:90px;margin:-1px -1px 0 0;padding:5px 0;border:1px solid #ccc;text-align:center}
+.exam_q ul li:first-child{margin-left:0}
+.exam_q ul li.active{background:yellow}
+.exam_q p{width:100px;padding:5px 0;border:1px solid #e2231a;background:#e2231a;font-size:1em;color:#fff;text-align:center}
+.exam_q p.active{border-color:#004990;background:#004990}

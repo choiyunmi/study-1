@@ -1,0 +1,5 @@
+@charset "utf-8";
+.exam_wrap div div,
+.exam_wrap div p,
+.exam_wrap div span,
+.exam_wrap div em{border:1px solid #e9e9e9}
