@@ -5,7 +5,7 @@
 <title>exam03 - array</title>
 <link rel="stylesheet" type="text/css" href="//ts.daumcdn.net/custom/blog/35/353808/skin/images/shCoreDefault.css" />
 <link rel="stylesheet" type="text/css" href="../css/common.css" />
-SyntaxHighlighter
+<!-- SyntaxHighlighter -->
 <script type="text/javascript" src="//ts.daumcdn.net/custom/blog/35/353808/skin/images/shCore.js"></script>
 <script type="text/javascript" src="//ts.daumcdn.net/custom/blog/35/353808/skin/images/shBrushXml.js"></script>
 <script type="text/javascript" src="//ts.daumcdn.net/custom/blog/35/353808/skin/images/shBrushCss.js"></script>
@@ -395,9 +395,6 @@ exam.View.exam2Array.prototype = {
 		this._welExamBtn.on('click', $.proxy(this._onClickBtn, this));
 	},
 	_onClickBtn: function() {
-		// [D] for문 사용하지 않고 출력
-		// this._welExamResult.text(this.sDefault.split('').reverse().join(''));
-
 		var aTemp = [],
 			sResult = '';
 		
@@ -406,6 +403,9 @@ exam.View.exam2Array.prototype = {
 		}
 
 		sResult = aTemp.reverse().join('');
+
+		// [D] for문 사용하지 않고 출력
+		// sResult = this.sDefault.split('').reverse().join('');
 
 		this._welExamResult.text(sResult).css('border-color', '#ff5b59');
 	}
