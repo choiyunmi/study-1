@@ -5,7 +5,7 @@
 <title>exam03 - array</title>
 <link rel="stylesheet" type="text/css" href="//ts.daumcdn.net/custom/blog/35/353808/skin/images/shCoreDefault.css" />
 <link rel="stylesheet" type="text/css" href="../css/common.css" />
-<!-- SyntaxHighlighter -->
+SyntaxHighlighter
 <script type="text/javascript" src="//ts.daumcdn.net/custom/blog/35/353808/skin/images/shCore.js"></script>
 <script type="text/javascript" src="//ts.daumcdn.net/custom/blog/35/353808/skin/images/shBrushXml.js"></script>
 <script type="text/javascript" src="//ts.daumcdn.net/custom/blog/35/353808/skin/images/shBrushCss.js"></script>
@@ -99,7 +99,9 @@ exam.View.exam1Array.prototype = {
 		this._welExamBtn.on('click', $.proxy(this._onClickBtn, this));
 	},
 	_onClickBtn: function() {
-		this._welExamResult.text(this.aDefault.join(' ')).css('border-color', '#ff5b59');
+		var sResult = this.aDefault.join(' ');
+
+		this._welExamResult.text(sResult).css('border-color', '#ff5b59');
 	}
 };
 
@@ -122,15 +124,19 @@ exam.View.exam2Array.prototype = {
 		this._welExamBtn.on('click', $.proxy(this._onClickBtn, this));
 	},
 	_onClickBtn: function() {
+		// [D] for문 사용하지 않고 출력
 		// this._welExamResult.text(this.sDefault.split('').reverse().join(''));
 
-		var aTemp = [];
+		var aTemp = [],
+			sResult = '';
 		
 		for (var i = 0, max = this.sDefault.length; i < max; i++){
-			aTemp.push(this.sDefault.charAt(i));
+			aTemp[i] = this.sDefault.charAt(i);
 		}
 
-		this._welExamResult.text(aTemp.reverse().join('')).css('border-color', '#ff5b59');
+		sResult = aTemp.reverse().join('');
+
+		this._welExamResult.text(sResult).css('border-color', '#ff5b59');
 	}
 };
 
@@ -161,7 +167,10 @@ exam.View.exam3Array.prototype = {
 		});
 
 		for (var i = 0, max = this.aDefault.length; i < max; i++){
-			aResult.push($.inArray(aDefaultCopy[i], this.aDefault));
+			// [D] indexOf()는 5판에서 ECMA-262 표준에 추가되었습니다. 따라서 모든 브라우저에 존재하지 않을 수 있습니다.
+			// aResult[i] = this.aDefault.indexOf(aDefaultCopy[i]);
+
+			aResult[i] = $.inArray(aDefaultCopy[i], this.aDefault);
 		}
 
 		this._welExamResult.text(aResult).css('border-color', '#ff5b59');
@@ -220,7 +229,7 @@ exam.View.exam5Array.prototype = {
 		var aResult = [];
 
 		for (var i = 0; i < 10; i++) {
-			aResult.push(i);
+			aResult[i] = i;
 		}
 
 		this._welExamResult.text(aResult).css('border-color', '#ff5b59');
@@ -248,7 +257,7 @@ exam.View.exam6Array.prototype = {
 		var aResult = [];
 
 		for (var i = 0; i < 6; i++) {
-			aResult.push(Math.floor((Math.random() * 6)));
+			aResult[i] = Math.floor((Math.random() * 6));
 		}
 
 		this._welExamResult.text(aResult).css('border-color', '#ff5b59');
@@ -280,8 +289,8 @@ exam.View.exam7Array.prototype = {
 			this.aDefault.splice(Math.floor((Math.random() * nLenght)), 1);
 		}
 
-		this._welExamResult.text(this.aDefault);	
-		this._welExamResult.css('border-color', '#ff5b59');
+
+		this._welExamResult.text(this.aDefault).css('border-color', '#ff5b59');
 	}
 };
 
@@ -308,7 +317,8 @@ exam.View.exam8Array.prototype = {
 
 		for (var i = 0; aResult.length < 6; i++) {
 			nRandom = Math.floor((Math.random() * 6));
-			if (aResult.indexOf(nRandom) === -1) {
+
+			if ($.inArray(nRandom, aResult) === -1) {
 				aResult.push(nRandom);
 			}
 		}
@@ -360,7 +370,9 @@ exam.View.exam1Array.prototype = {
 		this._welExamBtn.on('click', $.proxy(this._onClickBtn, this));
 	},
 	_onClickBtn: function() {
-		this._welExamResult.text(this.aDefault.join(' ')).css('border-color', '#ff5b59');
+		var sResult = this.aDefault.join(' ');
+
+		this._welExamResult.text(sResult).css('border-color', '#ff5b59');
 	}
 };
 
@@ -383,15 +395,19 @@ exam.View.exam2Array.prototype = {
 		this._welExamBtn.on('click', $.proxy(this._onClickBtn, this));
 	},
 	_onClickBtn: function() {
+		// [D] for문 사용하지 않고 출력
 		// this._welExamResult.text(this.sDefault.split('').reverse().join(''));
 
-		var aTemp = [];
+		var aTemp = [],
+			sResult = '';
 		
 		for (var i = 0, max = this.sDefault.length; i < max; i++){
-			aTemp.push(this.sDefault.charAt(i));
+			aTemp[i] = this.sDefault.charAt(i);
 		}
 
-		this._welExamResult.text(aTemp.reverse().join('')).css('border-color', '#ff5b59');
+		sResult = aTemp.reverse().join('');
+
+		this._welExamResult.text(sResult).css('border-color', '#ff5b59');
 	}
 };
 
@@ -422,7 +438,10 @@ exam.View.exam3Array.prototype = {
 		});
 
 		for (var i = 0, max = this.aDefault.length; i < max; i++){
-			aResult.push($.inArray(aDefaultCopy[i], this.aDefault));
+			// [D] indexOf()는 5판에서 ECMA-262 표준에 추가되었습니다. 따라서 모든 브라우저에 존재하지 않을 수 있습니다.
+			// aResult[i] = this.aDefault.indexOf(aDefaultCopy[i]);
+
+			aResult[i] = $.inArray(aDefaultCopy[i], this.aDefault);
 		}
 
 		this._welExamResult.text(aResult).css('border-color', '#ff5b59');
@@ -481,7 +500,7 @@ exam.View.exam5Array.prototype = {
 		var aResult = [];
 
 		for (var i = 0; i < 10; i++) {
-			aResult.push(i);
+			aResult[i] = i;
 		}
 
 		this._welExamResult.text(aResult).css('border-color', '#ff5b59');
@@ -509,7 +528,7 @@ exam.View.exam6Array.prototype = {
 		var aResult = [];
 
 		for (var i = 0; i < 6; i++) {
-			aResult.push(Math.floor((Math.random() * 6)));
+			aResult[i] = Math.floor((Math.random() * 6));
 		}
 
 		this._welExamResult.text(aResult).css('border-color', '#ff5b59');
@@ -541,8 +560,8 @@ exam.View.exam7Array.prototype = {
 			this.aDefault.splice(Math.floor((Math.random() * nLenght)), 1);
 		}
 
-		this._welExamResult.text(this.aDefault);	
-		this._welExamResult.css('border-color', '#ff5b59');
+
+		this._welExamResult.text(this.aDefault).css('border-color', '#ff5b59');
 	}
 };
 
@@ -569,7 +588,8 @@ exam.View.exam8Array.prototype = {
 
 		for (var i = 0; aResult.length < 6; i++) {
 			nRandom = Math.floor((Math.random() * 6));
-			if (aResult.indexOf(nRandom) === -1) {
+
+			if ($.inArray(nRandom, aResult) === -1) {
 				aResult.push(nRandom);
 			}
 		}
