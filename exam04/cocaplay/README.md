@@ -26,7 +26,7 @@ $("html, body").animate({scrollTop : $('#gameLst').offset().top - 10}, nDuration
 ```
 
 * Complete 함수가 두번 실행 문제
-	* setTimeout을 사용하여 animate 시간과 동일한 시간 뒤 실행되도록 함(처리 속도에 따라 thread가 바쁠 경우 시간차가 있을 수 있음)
+	* setTimeout을 사용하여 animate 시간과 동일한 시간 뒤 실행되도록 함(처리 속도에 따라 thread가 바쁠 경우 시간 차가 발생할 수 있음)
 	* 변수 flag로 구분하여 한번만 실행되도록 함
 
 ```javascript
