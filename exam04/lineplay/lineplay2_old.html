@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+<title>exam04 - Line Play</title>
+<link rel="stylesheet" type="text/css" href="css/common.css">
+</head>
+<body>
+	<div class="create_wrap">
+	<div class="swiper-container">
+		<ul class="swiper-wrapper">
+		<li class="swiper-slide">
+			<span class="avatar_box">
+				<img src="img/avatar_01.jpg" alt="avatar image" class="img_avatar">
+			</span>
+		</li>
+		<li class="swiper-slide">
+			<span class="avatar_box">
+				<img src="img/avatar_02.jpg" alt="avatar image" class="img_avatar">
+			</span>
+		</li>
+		<li class="swiper-slide">
+			<span class="avatar_box">
+				<img src="img/avatar_03.jpg" alt="avatar image" class="img_avatar">
+			</span>
+		</li>
+		<li class="swiper-slide">
+			<span class="avatar_box">
+				<img src="img/avatar_04.jpg" alt="avatar image" class="img_avatar">
+			</span>
+		</li>
+		<li class="swiper-slide">
+			<span class="avatar_box">
+				<img src="img/avatar_05.jpg" alt="avatar image" class="img_avatar">
+			</span>
+		</li>
+		<li class="swiper-slide">
+			<span class="avatar_box">
+				<img src="img/avatar_06.jpg" alt="avatar image" class="img_avatar">
+			</span>
+		</li>
+		<li class="swiper-slide">
+			<span class="avatar_box">
+				<img src="img/avatar_07.jpg" alt="avatar image" class="img_avatar">
+			</span>
+		</li>
+		<li class="swiper-slide">
+			<span class="avatar_box">
+				<img src="img/avatar_08.jpg" alt="avatar image" class="img_avatar">
+			</span>
+		</li>
+		<li class="swiper-slide">
+			<span class="avatar_box">
+				<img src="img/avatar_09.jpg" alt="avatar image" class="img_avatar">
+			</span>
+		</li>
+		<li class="swiper-slide">
+			<span class="avatar_box">
+				<img src="img/avatar_10.jpg" alt="avatar image" class="img_avatar">
+			</span>
+		</li>
+		<li class="swiper-slide">
+			<span class="avatar_box">
+				<img src="img/avatar_11.jpg" alt="avatar image" class="img_avatar">
+			</span>
+		</li>
+		<li class="swiper-slide">
+			<span class="avatar_box">
+				<img src="img/avatar_12.jpg" alt="avatar image" class="img_avatar">
+			</span>
+		</li>
+		</ul>
+	</div>
+	<button type="button" class="btn_random"><span>다른 아바타 보기</span></button>
+</div>
+
+<script type="text/javascript" src="../../js/lib/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+var exam = exam || {};
+exam.View = exam.View || {};
+exam.View.game = exam.View.game || {};
+
+exam.View.game.lineplay = function() {
+	this.init();
+};
+
+exam.View.game.lineplay.prototype = {
+	_aAvatarIndex: [],
+	_nCurrentIndex: null,
+	_nOldIndex: null,
+	_nRandomIndex: null,
+	_bIsAnimated: false,
+	init: function() {
+		this._assignElements();
+		this._attachEventHandlers();
+		this._setIndexArray();
+		this._setInitAvatar();
+	},
+	_setIndexArray: function() {
+		var nAvatarLength = this._welSwiperSlide.length;
+
+		// index값 array에 저장
+		for (var i = 0; this._aAvatarIndex.length < nAvatarLength; i++) {
+			this._aAvatarIndex.push(i);
+		}
+	},
+	_setInitAvatar: function() {
+		this._setCurrentIndex();
+		this._welSwiperSlide.eq(this._nCurrentIndex).show().siblings().hide();
+		this._aAvatarIndex.splice(this._nRandomIndex, 1);
+
+		console.log(this._nCurrentIndex, this._aAvatarIndex);
+	},
+	_assignElements: function() {
+		this._welAvatarWrap = $('.create_wrap');
+		this._welSwiperContainer = this._welAvatarWrap.find('.swiper-container');
+		this._welSwiperWrapper = this._welSwiperContainer.find('.swiper-wrapper');
+		this._welSwiperSlide = this._welSwiperWrapper.find('.swiper-slide');
+		this._welRandomBtn = this._welAvatarWrap.find('.btn_random');
+	},
+	_attachEventHandlers: function() {
+		this._welRandomBtn.on('click', $.proxy(this._onClickRandomBtn, this));
+	},
+	_onClickRandomBtn: function() {
+		if (this._bIsAnimated) {
+			return false;
+		}
+
+		if (this._aAvatarIndex.length < 1) {
+			this._setIndexArray();
+		}
+
+		this._nOldIndex = this._nCurrentIndex;
+		this._setCurrentIndex();
+
+		while (this._nCurrentIndex === this._nOldIndex) {
+			console.log(this._nCurrentIndex + ', ' + this._nOldIndex + ' → conflict');
+			this._setCurrentIndex();
+		}
+		
+		this._aAvatarIndex.splice(this._nRandomIndex, 1);
+
+		this._activeAvatar();
+	},
+	_setCurrentIndex: function() {
+		this._nRandomIndex = Math.floor(Math.random() * this._aAvatarIndex.length);
+		this._nCurrentIndex = this._aAvatarIndex[this._nRandomIndex];
+	},
+	_activeAvatar: function() {
+		var oSelf = this;
+
+		this._bIsAnimated = true;
+
+		this._welSwiperSlide.eq(this._nOldIndex).css('z-index', 0).fadeOut(400);
+		this._welSwiperSlide.eq(this._nCurrentIndex).css('z-index', 50).fadeIn(400, function(){
+			oSelf._bIsAnimated = false;
+		});
+
+		console.log(this._nCurrentIndex, this._aAvatarIndex);
+	}
+};
+
+$(function() {
+	var oExamViewGameLineplay = new exam.View.game.lineplay();
+});
+</script>
+</body>
+</html>
