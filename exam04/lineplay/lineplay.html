@@ -98,10 +98,15 @@ exam.View.game.lineplay.prototype = {
 	},
 	_setInitAvatar: function() {
 		this._setRandomArray();
-		this._nCurrentIndex = this._aAvatarIndex.shift();
+		this._setCurrentIndex();
+
+		// 아바타 view 처리
 		this._welSwiperSlide.eq(this._nCurrentIndex).show().siblings().hide();
 
-		console.log(this._nCurrentIndex, this._aAvatarIndex);
+		// 아바타 index array 처리
+		this._aAvatarIndex.shift();
+
+		console.log('남은 index :', this._aAvatarIndex);
 	},
 	_assignElements: function() {
 		this._welAvatarWrap = $('.create_wrap');
@@ -125,38 +130,52 @@ exam.View.game.lineplay.prototype = {
 				this._aAvatarIndex.push(nRandom);
 			}
 
-			// 첫번째 index가 현재 인덱스와 같으면 array에서 빼줌
+			// 중복된 index값 처리
 			if (this._aAvatarIndex.length === 1 && this._aAvatarIndex[0] === this._nCurrentIndex) {
-				console.log(this._aAvatarIndex[0] + ', ' + this._nCurrentIndex + ' → conflict');
 				this._aAvatarIndex.pop();
+
+				console.log(this._aAvatarIndex[0] + ', ' + this._nCurrentIndex + ' → conflict');
 			}
 		}
 	},
+	_setCurrentIndex: function() {
+		this._nCurrentIndex = this._aAvatarIndex[0];
+
+		console.log('현재 index :', this._nCurrentIndex);
+	},
 	_onClickRandomBtn: function() {
+		// 애니메이션 중 인지 체크
 		if (this._bIsAnimated) {
 			return false;
 		}
 
+		// array에 남은 값이 없으면 다시 array 셋팅
 		if (this._aAvatarIndex.length < 1) {
 			this._setRandomArray();
 		}
 	
+		// 이전 index, 현재 index 셋팅
 		this._nOldIndex = this._nCurrentIndex;
-		this._nCurrentIndex = this._aAvatarIndex.shift();
+		this._setCurrentIndex();
 		
+		// 현재 index 아바타 활성화
 		this._activeAvatar();
 	},
 	_activeAvatar: function() {
 		var oSelf = this;
 
 		this._bIsAnimated = true;
-
+		
+		// 아바타 view 처리
 		this._welSwiperSlide.eq(this._nOldIndex).css('z-index', 0).fadeOut(400);
 		this._welSwiperSlide.eq(this._nCurrentIndex).css('z-index', 50).fadeIn(400, function(){
 			oSelf._bIsAnimated = false;
 		});
 
-		console.log(this._nCurrentIndex, this._aAvatarIndex);
+		// 아바타 index array 처리
+		this._aAvatarIndex.shift();
+
+		console.log('남은 index :', this._aAvatarIndex);
 	}
 };
 

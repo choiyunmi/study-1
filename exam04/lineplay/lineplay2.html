@@ -95,23 +95,19 @@ exam.View.game.lineplay.prototype = {
 	init: function() {
 		this._assignElements();
 		this._attachEventHandlers();
-		this._setIndexArray();
 		this._setInitAvatar();
 	},
-	_setIndexArray: function() {
-		var nAvatarLength = this._welSwiperSlide.length;
-
-		// index값 array에 저장
-		for (var i = 0; this._aAvatarIndex.length < nAvatarLength; i++) {
-			this._aAvatarIndex.push(i);
-		}
-	},
 	_setInitAvatar: function() {
+		this._setIndexArray();
 		this._setCurrentIndex();
+
+		// 아바타 view 처리
 		this._welSwiperSlide.eq(this._nCurrentIndex).show().siblings().hide();
+
+		// 아바타 index array 처리
 		this._aAvatarIndex.splice(this._nRandomIndex, 1);
 
-		console.log(this._nCurrentIndex, this._aAvatarIndex);
+		console.log('남은 index :', this._aAvatarIndex);
 	},
 	_assignElements: function() {
 		this._welAvatarWrap = $('.create_wrap');
@@ -123,42 +119,60 @@ exam.View.game.lineplay.prototype = {
 	_attachEventHandlers: function() {
 		this._welRandomBtn.on('click', $.proxy(this._onClickRandomBtn, this));
 	},
-	_onClickRandomBtn: function() {
-		if (this._bIsAnimated) {
-			return false;
+	_setIndexArray: function() {
+		var nAvatarLength = this._welSwiperSlide.length;
+
+		// array에 index를 순서대로 저장
+		for (var i = 0; this._aAvatarIndex.length < nAvatarLength; i++) {
+			this._aAvatarIndex.push(i);
 		}
-
-		if (this._aAvatarIndex.length < 1) {
-			this._setIndexArray();
-		}
-
-		this._nOldIndex = this._nCurrentIndex;
-		this._setCurrentIndex();
-
-		while (this._nCurrentIndex === this._nOldIndex) {
-			console.log(this._nCurrentIndex + ', ' + this._nOldIndex + ' → conflict');
-			this._setCurrentIndex();
-		}
-		
-		this._aAvatarIndex.splice(this._nRandomIndex, 1);
-
-		this._activeAvatar();
 	},
 	_setCurrentIndex: function() {
 		this._nRandomIndex = Math.floor(Math.random() * this._aAvatarIndex.length);
 		this._nCurrentIndex = this._aAvatarIndex[this._nRandomIndex];
+
+		console.log('현재 index :', this._nCurrentIndex);
+	},
+	_onClickRandomBtn: function() {
+		// 애니메이션 중 인지 체크
+		if (this._bIsAnimated) {
+			return false;
+		}
+
+		// array에 남은 값이 없으면 다시 array 셋팅
+		if (this._aAvatarIndex.length < 1) {
+			this._setIndexArray();
+		}
+
+		// 이전 index, 현재 index 셋팅
+		this._nOldIndex = this._nCurrentIndex;
+		this._setCurrentIndex();
+		
+		// 중복된 index값 처리
+		while (this._nCurrentIndex === this._nOldIndex) {
+			this._setCurrentIndex();
+
+			console.log(this._nCurrentIndex + ', ' + this._nOldIndex + ' → conflict');
+		}
+
+		// 현재 index 아바타 활성화
+		this._activeAvatar();
 	},
 	_activeAvatar: function() {
 		var oSelf = this;
 
 		this._bIsAnimated = true;
 
+		// 아바타 view 처리
 		this._welSwiperSlide.eq(this._nOldIndex).css('z-index', 0).fadeOut(400);
 		this._welSwiperSlide.eq(this._nCurrentIndex).css('z-index', 50).fadeIn(400, function(){
 			oSelf._bIsAnimated = false;
 		});
 
-		console.log(this._nCurrentIndex, this._aAvatarIndex);
+		// 아바타 index array 처리
+		this._aAvatarIndex.splice(this._nRandomIndex, 1);
+
+		console.log('남은 index :', this._aAvatarIndex);
 	}
 };
 
