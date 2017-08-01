@@ -45,7 +45,7 @@ this._welSwiperSlide.eq(this._nCurrentIndex).css('z-index', 50).fadeIn(400, func
 });
 ```
 
-### 기능별로 함수 분리해서 작성하기
+### 기능별로 함수 분리 작성하기
 ```javascript
 _setRandomArray: function() {
 	// array 셋팅
