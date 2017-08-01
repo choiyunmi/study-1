@@ -62,6 +62,9 @@ bFlag = true;
 * 각각의 병뚜껑에 for문을 이용해서 animate를 적용할 때 promise 사용
 * winlane addClass가 실행되기 전에 결과 alert가 뜸
 	* delay, queue, dequeue 사용
+* 참고
+	* jquery api - promise : https://api.jquery.com/promise/#promise-type-target
+	* jquery api - deferred object : https://api.jquery.com/category/deferred-object/
 
 ```javascript
 for (var i = 0, len = this._aResult.length; i < len; i++) {
