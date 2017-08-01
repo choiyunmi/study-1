@@ -63,8 +63,8 @@ bFlag = true;
 * winlane addClass가 실행되기 전에 결과 alert가 뜸
 	* delay, queue, dequeue 사용
 * 참고
-	* jquery api - promise : https://api.jquery.com/promise/#promise-type-target
-	* jquery api - deferred object : https://api.jquery.com/category/deferred-object/
+	* [jquery api - promise](https://api.jquery.com/promise/#promise-type-target)
+	* [jquery api - deferred object](https://api.jquery.com/category/deferred-object/)
 
 ```javascript
 for (var i = 0, len = this._aResult.length; i < len; i++) {
