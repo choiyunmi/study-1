@@ -52,11 +52,11 @@ var exam = exam || {};
 exam.View = exam.View || {};
 exam.View.game = exam.View.game || {};
 
-exam.View.game.cocaplay = function() {
+exam.View.game.coca = function() {
 	this.init();
 };
 
-exam.View.game.cocaplay.prototype = {
+exam.View.game.coca.prototype = {
 	bIsWin: false,
 	_bIsAnimated: false,
 	_bIsClear: false,
@@ -80,8 +80,8 @@ exam.View.game.cocaplay.prototype = {
 	},
 	_onClickBtn: function(e) {
 		e.preventDefault();
-
-		this._getSelectIndex();
+		var oSelf = this,
+			nDuration = 400;
 
 		if (this._bIsClear) {
 			alert('이미 참여하였습니다.');
@@ -92,30 +92,24 @@ exam.View.game.cocaplay.prototype = {
 			return false;
 		}
 
+		this._getSelectIndex();
+
 		if (this._nCheckedIndex === -1) {
 			alert('폴라베어를 선택해주세요.');
 			return false;
 		}
 
-		this._scrollBody();
+		this._bIsAnimated = true;
+
+		$("html, body").animate({scrollTop : $('#gameLst').offset().top - 10}, nDuration);
+
+		setTimeout(function() {
+			oSelf._bIsAnimated = false;
+			oSelf._startPlay();
+		}, nDuration);
 	},
 	_getSelectIndex: function() {
 		this._nCheckedIndex = this._welClickListInput.filter(':checked').parent().index();
-	},
-	_scrollBody: function() {
-		var oSelf = this,
-			bFlag = false,
-			nDuration = 400;
-
-		this._bIsAnimated = true;
-
-		$("html, body").animate({scrollTop : this._welGameList.offset().top}, nDuration, function() {
-			if (!bFlag) {
-				oSelf._bIsAnimated = false;
-				oSelf._startPlay();
-			};
-			bFlag = true;
-		});
 	},
 	_startPlay: function() {
 		var oSelectedGom = this._welGameListGom.eq(this._nCheckedIndex),
@@ -124,7 +118,6 @@ exam.View.game.cocaplay.prototype = {
 			nRandom,
 			nDuration = 400;
 
-		// 승자 셋팅
 		if (this.bIsWin) {
 			oWinner = oSelectedGom;
 		} else {
@@ -132,10 +125,8 @@ exam.View.game.cocaplay.prototype = {
 			oWinner = this._welGameListGom.not(oSelectedGom).eq(nRandom);
 		}
 
-		// 패자 셋팅
 		oLoser = this._welGameListGom.not(oWinner);
 
-		// 병뚜껑 애니메이션
 		oWinner.animate({'top': 98}, nDuration, function() {
 			$(this).parent().addClass('winlane');
 		});
@@ -148,7 +139,7 @@ exam.View.game.cocaplay.prototype = {
 };
 
 $(function() {
-	var oExamViewGameCocaplay = new exam.View.game.cocaplay();
+	var oExamViewGameCoca = new exam.View.game.coca();
 });
 </script>
 </body>
