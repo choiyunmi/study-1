@@ -8,18 +8,5 @@
 
 # Homework
 
-## exam01
-
-- selector1(jQuery) : https://hayoungkkim.github.io/study/exam01/selector_jQuery.html
-- selector1(javascript) : https://hayoungkkim.github.io/study/exam01/selector_javascript.html
-- selector2(jQuery) : https://hayoungkkim.github.io/study/exam01/selector2_jQuery.html
-- selector2(javascript) : https://hayoungkkim.github.io/study/exam01/selector2_javascript.html
-
-## exam02
-- for : https://hayoungkkim.github.io/study/exam02/for.html
-- if : https://hayoungkkim.github.io/study/exam02/if.html
-- if(ssg style) : https://hayoungkkim.github.io/study/exam02/if2.html
-
-## exam03
-- array : https://hayoungkkim.github.io/study/exam03/array.html
-- object : https://hayoungkkim.github.io/study/exam03/object.html
+## index
+* https://hayoungkkim.github.io/study/index.html 
