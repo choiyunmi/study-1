@@ -4,7 +4,7 @@
 
 > radio 버튼 선택
 >
-> 선택하기 버튼 클릭 시 #gameLst 영역으로 스크롤 이동
+> 선택하기 버튼 클릭 시 `#gameLst` 영역으로 스크롤 이동
 >
 > 승자 모드는 무조건 성공, 패자 모드 실패
 
@@ -17,13 +17,17 @@
 * 외부에서 접근 가능, 접근 불가능
 	* 함수, 변수명 앞에 언더스코어(`_`)로 구분
 
+<br>
+
 ### 화면 스크롤 애니메이션
 
-* 크로스브라우징을 위해 html, body에 같이 적용
+* 크로스브라우징을 위해 `html`, `body`에 같이 적용
 
 ```javascript
 $("html, body").animate({scrollTop : $('#gameLst').offset().top - 10}, nDuration);
 ```
+
+<br>
 
 * Complete 함수가 두번 실행 문제
 	* setTimeout을 사용하여 animate 시간과 동일한 시간 뒤 실행되도록 함(처리 속도에 따라 thread가 바쁠 경우 시간 차가 발생할 수 있음)
@@ -53,16 +57,18 @@ $('body, html').stop().animate({scrollTop: this.nWelSeWrapOffsetTop}, 200, funct
 	if (!bFlag) {
 		oSelf._displayResult();
 	};
-bFlag = true;
+	bFlag = true;
 });
 ```
+
+<br>
 
 ### 병뚜껑 애니메이션
 
 * 각각의 병뚜껑에 for문을 이용해서 animate를 적용할 때 promise 사용
 * winlane addClass가 실행되기 전에 결과 alert가 뜸
 	* delay, queue, dequeue 사용
-* 참고
+* 참고 (**추가적인 공부가 필요합니다!**)
 	* [jquery api - promise](https://api.jquery.com/promise/#promise-type-target)
 	* [jquery api - deferred object](https://api.jquery.com/category/deferred-object/)
 
