@@ -29,9 +29,19 @@
 ### SSG 방식 익히기
 
 * 엘리먼트를 저장하는 방식 : wrapper 엘리먼트를 저장, 자식요소 find로 찾기
-* 엘리먼트를 저장하는 변수에 접두사 wel(wrap element)
-	* 헝가리안 표기법에서 Html Element를 뜻하는 el 앞에 wrap의 w를 붙여줌
-	* wrapper가 되는 Element wel과 el 구분이 모호(SSG에서는 모두 wel로 사용 중)
+* 엘리먼트를 저장하는 변수에 접두사 `wel`(wrap element)
+	* 헝가리안 표기법에서 Html Element를 뜻하는 `el` 앞에 wrap의 `w`를 붙여줌
+	* wrapper가 되는 Element `wel`과  Element `el` 구분이 모호(SSG에서는 모두 `wel`로 사용 중)
+
+```javascript
+_assignElements: function() {
+	this._welAvatarWrap = $('.create_wrap');
+	this._welSwiperContainer = this._welAvatarWrap.find('.swiper-container');
+	this._welSwiperWrapper = this._welSwiperContainer.find('.swiper-wrapper');
+	this._welSwiperSlide = this._welSwiperWrapper.find('.swiper-slide');
+	this._welRandomBtn = this._welAvatarWrap.find('.btn_random');
+}
+```
 
 <br>
 
