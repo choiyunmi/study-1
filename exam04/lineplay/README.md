@@ -33,6 +33,8 @@
 	* 헝가리안 표기법에서 Html Element를 뜻하는 el 앞에 wrap의 w를 붙여줌
 	* wrapper가 되는 Element wel과 el 구분이 모호(SSG에서는 모두 wel로 사용 중)
 
+<br>
+
 ### this 유지
 
 * fadeIn Complete function 안에서 this가 해당 객체를 가리키게 하기 위해서 변수 `oSlef`에 저장
@@ -45,7 +47,9 @@ this._welSwiperSlide.eq(this._nCurrentIndex).css('z-index', 50).fadeIn(400, func
 });
 ```
 
-### 기능별로 함수 분리 작성하기
+<br>
+
+### 기능별로 분리하여  작성하기
 ```javascript
 _setRandomArray: function() {
 	// array 셋팅
