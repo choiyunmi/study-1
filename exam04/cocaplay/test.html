@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+<title>exam04 - coca</title>
+<link rel="stylesheet" type="text/css" href="css/coca.css">
+</head>
+<body>
+<link rel="stylesheet" type="text/css" href="http://static.ssgcdn.com/ui/ssg/css/special_tmpl.css" />
+    <div class="slideBanner ty1">
+        <ul>
+        <li>
+                <div class="special_tile_bn opt-tile-col1">
+                    <ul>
+                        <li>
+                            <div class="special_tile">
+                                <a href='http://emart.ssg.com/planshop/detail.ssg?dispCmptId=6000158241' target='_self' class="thmb" ><img src="http://static.ssgcdn.com/cmpt/banner/201708/2017080218093709044290905529_558.jpg" alt="더반찬, 쁘띠" /></a><span class="detail">
+                                    <span class="bx_tx">
+                                        <em class="tx_tit">더반찬, 쁘띠</em>
+                                        <em class="tx_tit">#02</em>
+                                        <em class="tx_desc">POWER, SWEET 모두 만나보세요</em>
+                                        <em class="tx_desc"></em>
+                                        <span class="tx_link">
+                                            </span>
+                                    </span>
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+        </li>
+        <li>
+            <div class="special_tile_bn opt-tile-col1">
+                <ul>
+                    <li>
+                        <div class="special_tile">
+                            <a href='http://emart.ssg.com/planshop/detail.ssg?dispCmptId=6000158248' target='_self' class="thmb" ><img src="http://static.ssgcdn.com/cmpt/banner/201708/2017080218111980478658044965_357.jpg" alt="더반찬, KIDS" /></a><span class="detail">
+                                <span class="bx_tx">
+                                    <em class="tx_tit">더반찬, KIDS</em>
+                                    <em class="tx_tit">BEST10</em>
+                                    <em class="tx_desc">온가족이 즐겁게 식사하는 작은 행복</em>
+                                    <em class="tx_desc"></em>
+                                    <span class="tx_link">
+                                        </span>
+                                </span>
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <div class="special_tile_bn opt-tile-col1">
+                <ul>
+                    <li>
+                        <div class="special_tile">
+                            <a href='http://emart.ssg.com/planshop/detail.ssg?dispCmptId=6000158246' target='_self' class="thmb" ><img src="http://static.ssgcdn.com/cmpt/banner/201708/2017080218124043348494331949_723.jpg" alt="더반찬, 솔트컷(SALT CUT)" /></a><span class="detail">
+                                <span class="bx_tx">
+                                    <em class="tx_tit">더반찬, 차림</em>
+                                    <em class="tx_tit">솔트컷이 답이다!</em>
+                                    <em class="tx_desc">맛과 건강을 생각하는 생활 속의 전문 건강식</em>
+                                    <em class="tx_desc"></em>
+                                    <span class="tx_link">
+                                        </span>
+                                </span>
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        </ul>               
+    </div>
+
+<script type="text/javascript" src="../../js/lib/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="http://static.ssgcdn.com/ui/em/js/lib/jquery.bxslider.min.js"></script>
+<script type="text/javascript">
+var ssg = ssg || {};
+ssg.util = $.extend({
+    hasElement: function(el) {
+        return ($(el).length > 0);
+    }
+}, ssg.util || {});
+ssg.View = ssg.View || {};
+ssg.View.special = ssg.View.special || {};
+ssg.View.special.template = ssg.View.special.template || {};
+
+ssg.View.special.template.slideBanner = function(htOptions) {
+    $.extend(this, htOptions || {});
+    this.init();
+};
+ssg.View.special.template.slideBanner.prototype = {
+    sTarget: '',
+    htOptions: {},
+    _htDefault: {
+        speed: 800,
+        pause: 4000,
+        auto: true,
+        autoControls: true,
+        adaptiveHeight: true
+    },
+    init: function() {
+        this._htSlider = $.extend({}, this._htDefault, this.htOptions);
+
+        this._assignElements();
+        this._assignComponents();
+    },
+    _assignElements: function() {
+        this._welSliderWrap = $(this.sTarget);
+        this._welSlideList = this._welSliderWrap.find('>ul');
+        this._welSlideListSlide = this._welSlideList.find('>li');
+    },
+    _assignComponents: function() {
+        var nList = parseInt(this._welSlideListSlide.length, 10);
+
+        if(nList > 1){
+            this._oSlider = this._welSlideList.bxSlider($.extend({}, this._htSlider));
+        }
+    }
+};
+
+$(function(){
+    if(ssg.util.hasElement('.slideBanner')){
+        var oSsgViewSpecialTemplateSlideBanner = new ssg.View.special.template.slideBanner({
+            sTarget: '.slideBanner',
+            htOptions: {
+                pager: true
+            }
+        });
+    }
+});
+</script>
+</body>
+</html>
+
