@@ -183,7 +183,7 @@ exam.View.layerpopup.prototype = {
         this._focusOut();
     },
     _focusIn: function() {
-        this._welTargetLayer.attr('tabIndex', -1).focus();    // 타겟레이어 포커스 인
+        this._welTargetLayer.attr('tabIndex', 0).focus();    // 타겟레이어 포커스 인
     },
     _focusOut: function() {
         this._welTargetLayer.removeAttr('tabIndex');    // 타겟레이어 포커스 아웃
