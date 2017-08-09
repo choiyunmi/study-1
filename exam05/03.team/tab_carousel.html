@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>exam - thema</title>
+<style>
+/* temporary css */
+*{margin:0;padding:0}
+body{font-size:14px;font-family:"나눔고딕",NanumGothic,"굴림",Gulim,Sans-serif;line-height:1.5}
+h1,h2,h3,h4,h5,h6{font-size:14px}
+ul,li{list-style:none}
+button{font-size:14px;font-family:"나눔고딕",NanumGothic,"굴림",Gulim,Sans-serif;line-height:1.5;cursor:pointer}
+button::-moz-focus-inner{padding:0;border:0}
+.cast_box{width:880px;margin:0 auto;border:1px solid #ccc}
+.cast_tab{}
+.cast_tab ul{zoom:1}
+.cast_tab ul:after{display:block;clear:both;content:''}
+.cast_tab ul li{float:left;width:12.5%;text-align:center}
+.cast_tab ul li a{display:block;padding:10px;border-left:1px solid #ccc;background:#f3f3f3;color:#000;text-decoration:none}
+.cast_tab ul li:first-child a{border-left:0 none}
+.cast_tab ul li.active a{background:#ccc;color:#000}
+.cast_cont{overflow:hidden;position:relative;height:500px;border-top:1px solid #ccc}
+.cast_article{display:block;position:absolute;left:0;top:0;width:100%;height:500px}
+.cast_setting{height:25px;padding:10px;border-top:1px solid #ccc}
+.cast_setting .cast_btn{float:left}
+.cast_setting .cast_num{float:right;margin-right:5px}
+.cast_num .total{font-weight:bold}
+
+.slide_box{position:relative;width:880px;margin:0 auto;border:1px solid #ccc}
+.slide_tab{position:absolute;left:0;bottom:0;right:0;z-index:100;padding:15px 0;font-size:0;line-height:0;text-align:center}
+.slide_tab ul{display:inline-block;vertical-align:top}
+.slide_tab ul li{float:left;margin:0 3px}
+.slide_tab ul li a{display:inline-block;width:12px;height:12px;border-radius:100%;background:#ccc;vertical-align:top}
+.slide_tab ul li.active a{background:#000}
+.slide_cont{overflow:hidden;position:relative;height:440px}
+.slide_article{display:block;position:absolute;left:0;top:0;width:100%;height:440px}
+.slide_article:nth-child(1){background:red}
+.slide_article:nth-child(2){background:orange}
+.slide_article:nth-child(3){background:yellow}
+.slide_article:nth-child(4){background:green}
+.slide_article:nth-child(5){background:blue;color:#fff}
+.slide_article:nth-child(6){background:skyblue}
+.slide_article:nth-child(7){background:navy;color:#fff}
+.slide_article:nth-child(8){background:violet}
+.slide_setting{height:25px;padding:10px;border-top:1px solid #ccc}
+.slide_setting .slide_btn button{position:absolute;top:50%;z-index:100;margin:0 20px}
+.slide_setting .slide_btn button:nth-child(1){left:0}
+.slide_setting .slide_btn button:nth-child(2){right:0}
+.slide_setting .slide_num{float:right;margin-right:5px}
+.slide_num .total{font-weight:bold}
+
+h1{width:880px;margin:30px auto 0}
+/* //temporary css */
+</style>
+</head>
+<body>
+<!-- wrapper [s] -->
+<div id="wrapper">
+    <!-- header [s] -->
+    <div id="header">@</div>
+    <!-- header [e] -->
+    <hr />
+    <!-- container [s] -->
+    <div id="container">
+        <div id="box1">
+            <h1>tab 스타일 / show,hide 동작 / pageNum 있음</h1>
+            <div class="cast_box">
+                <div class="cast_tab">
+                    <ul>
+                        <li class="active"><a href="#thema1">테마1</a></li>
+                        <li><a href="#thema2">테마2</a></li>
+                        <li><a href="#thema3">테마3</a></li>
+                        <li><a href="#thema4">테마4</a></li>
+                        <li><a href="#thema5">테마5</a></li>
+                        <li><a href="#thema6">테마6</a></li>
+                        <li><a href="#thema7">테마7</a></li>
+                        <li><a href="#thema8">테마8</a></li>
+                    </ul>
+                </div>
+                <div class="cast_cont">
+                    <div id="thema1" class="cast_article">컨텐츠1</div>
+                    <div id="thema2" class="cast_article">컨텐츠2</div>
+                    <div id="thema3" class="cast_article">컨텐츠3</div>
+                    <div id="thema4" class="cast_article">컨텐츠4</div>
+                    <div id="thema5" class="cast_article">컨텐츠5</div>
+                    <div id="thema6" class="cast_article">컨텐츠6</div>
+                    <div id="thema7" class="cast_article">컨텐츠7</div>
+                    <div id="thema8" class="cast_article">컨텐츠8</div>
+                </div>
+                <div class="cast_setting">
+                    <div class="cast_btn">
+                        <button type="button" class="prev">이전</button><button type="button" class="next">다음</button>
+                    </div>
+                    <div class="cast_num"><span class="current">1</span> / <span class="total">8</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="box2">
+            <h1>slider 스타일 / slide 동작 / pageNum 없음</h1>
+            <div class="slide_box">
+                <div class="slide_tab">
+                    <ul>
+                        <li class="active"><a href="#slide1_1">테마1</a></li>
+                        <li><a href="#slide1_2">테마2</a></li>
+                        <li><a href="#slide1_3">테마3</a></li>
+                        <li><a href="#slide1_4">테마4</a></li>
+                        <li><a href="#slide1_5">테마5</a></li>
+                        <li><a href="#slide1_6">테마6</a></li>
+                        <li><a href="#slide1_7">테마7</a></li>
+                        <li><a href="#slide1_8">테마8</a></li>
+                    </ul>
+                </div>
+                <div class="slide_cont">
+                    <div id="slide1_1" class="slide_article">컨텐츠1</div>
+                    <div id="slide1_2" class="slide_article">컨텐츠2</div>
+                    <div id="slide1_3" class="slide_article">컨텐츠3</div>
+                    <div id="slide1_4" class="slide_article">컨텐츠4</div>
+                    <div id="slide1_5" class="slide_article">컨텐츠5</div>
+                    <div id="slide1_6" class="slide_article">컨텐츠6</div>
+                    <div id="slide1_7" class="slide_article">컨텐츠7</div>
+                    <div id="slide1_8" class="slide_article">컨텐츠8</div>
+                </div>
+                <div class="slide_setting">
+                    <div class="slide_btn">
+                        <button type="button" class="prev">이전</button><button type="button" class="next">다음</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="box3">
+            <h1>slider 스타일 / fade 동작 / pageNum 있음</h1>
+            <div class="slide_box">
+                <div class="slide_tab">
+                    <ul>
+                        <li class="active"><a href="#slide2_1">테마1</a></li>
+                        <li><a href="#slide2_2">테마2</a></li>
+                        <li><a href="#slide2_3">테마3</a></li>
+                        <li><a href="#slide2_4">테마4</a></li>
+                        <li><a href="#slide2_5">테마5</a></li>
+                        <li><a href="#slide2_6">테마6</a></li>
+                        <li><a href="#slide2_7">테마7</a></li>
+                        <li><a href="#slide2_8">테마8</a></li>
+                    </ul>
+                </div>
+                <div class="slide_cont">
+                    <div id="slide2_1" class="slide_article">컨텐츠1</div>
+                    <div id="slide2_2" class="slide_article">컨텐츠2</div>
+                    <div id="slide2_3" class="slide_article">컨텐츠3</div>
+                    <div id="slide2_4" class="slide_article">컨텐츠4</div>
+                    <div id="slide2_5" class="slide_article">컨텐츠5</div>
+                    <div id="slide2_6" class="slide_article">컨텐츠6</div>
+                    <div id="slide2_7" class="slide_article">컨텐츠7</div>
+                    <div id="slide2_8" class="slide_article">컨텐츠8</div>
+                </div>
+                <div class="slide_setting">
+                    <div class="slide_btn">
+                        <button type="button" class="prev">이전</button><button type="button" class="next">다음</button>
+                    </div>
+                    <div class="slide_num"><span class="current">1</span> / <span class="total">8</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- container [e] -->
+    <hr />
+    <!-- footer [s] -->
+    <div id="footer">@</div>
+    <!-- footer [e] -->
+</div>
+<!-- [ Javascript Area ] -->
+<!-- Libs -->
+<script type="text/javascript" src="../../js/lib/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+var exam = exam || {};
+exam.View = exam.View || {};
+exam.View.carousel = exam.View.carousel || {};
+
+exam.View.carousel = function(htOptions) {
+    $.extend(this, htOptions || {});
+    this.init();
+};
+
+exam.View.carousel.prototype = {
+    sTarget: '',
+    sPrefix: '.cast',
+    sType: 'default',    // default, fade, slide
+    bPageNum: false,
+    nCurrentIndex: 0,
+    nNextIndex: null,
+    isAnimated: false,
+    init: function() {
+        this._assignElements();
+        this._attachEventHandlers();
+
+        switch (this.sType) {
+            case 'default':
+            case 'fade':
+                this._initTypeDefault();
+                break;
+            case 'slide':
+                this._initTypeSlide();
+                break;
+            default:
+                alert('View Type은 default, fade, slide만 가능합니다.');
+        }
+
+        if (this.bPageNum) {
+            this._setPageNum();
+        }
+    },
+    _initTypeDefault: function() {
+        this._welCarouselArticle.removeClass('active').eq(this.nCurrentIndex).addClass('active').show().siblings().hide();
+    },
+    _initTypeSlide: function() {
+        this._welCarouselArticle.removeClass('active').eq(this.nCurrentIndex).addClass('active').css('left', '0').siblings().css('left', '100%');
+    },
+    _assignElements: function() {
+        this._welCarouselWrap = $(this.sTarget);
+        this._welCarouselBox = this._welCarouselWrap.find(this.sPrefix + '_box');
+        this._welCarouselTabWrap = this._welCarouselBox.find(this.sPrefix + '_tab');
+        this._welCarouselTabItem = this._welCarouselTabWrap.find('>ul>li');
+        this._welCarouselTab = this._welCarouselTabItem.find('a');
+        this._welCarouselCont = this._welCarouselBox.find(this.sPrefix + '_cont');
+        this._welCarouselArticle = this._welCarouselCont.find(this.sPrefix + '_article');
+        this._welCarouselSetting = this._welCarouselBox.find(this.sPrefix + '_setting');
+        this._welCarouselPrevBtn = this._welCarouselSetting.find('.prev');
+        this._welCarouselNextBtn = this._welCarouselSetting.find('.next');
+        if (this.bPageNum) {
+            this._welCarouselPage = $(this.sPrefix + '_num');
+            this._welCarouselCurrent = this._welCarouselPage.find('.current');
+            this._welCarouselTotal = this._welCarouselPage.find('.total');
+        }
+    },
+    _attachEventHandlers: function() {
+        this._welCarouselTab.on('click', $.proxy(this._onClickTabBtn, this));
+        this._welCarouselPrevBtn.on('click', $.proxy(this._onClickPrevBtn, this));
+        this._welCarouselNextBtn.on('click', $.proxy(this._onClickNextBtn, this));
+    },
+    _onClickTabBtn: function(e) {
+        e.preventDefault();    // 클릭한 버튼 기본 기능 막기
+
+        var currentTarget = $(e.currentTarget),
+            welTarget = $(currentTarget.attr('href'));
+
+        // next index 저장
+        this.nNextIndex = this._welCarouselArticle.index(welTarget);
+
+        // show 처리
+        switch (this.sType) {
+            case 'default':
+                this._showTypeDefault();
+                break;
+            case 'fade':
+                this._showTypeFade();
+                break;
+            case 'slide':
+                if (this.nNextIndex > this.nCurrentIndex) {
+                    this._showTypeSlide(1);
+                } else {
+                    this._showTypeSlide(-1);
+                }
+                break;
+            default:
+                alert('default, fade, slide만 가능합니다.');
+        }
+    },
+    _onClickPrevBtn: function(e) {
+        e.preventDefault();    // 클릭한 버튼 기본 기능 막기
+        
+        // next index 저장
+        this.nNextIndex = (this.nCurrentIndex > 0) ? this.nCurrentIndex - 1 : this._welCarouselArticle.length - 1;
+
+        // show 처리
+        switch (this.sType) {
+            case 'default':
+                this._showTypeDefault();
+                break;
+            case 'fade':
+                this._showTypeFade();
+                break;
+            case 'slide':
+                this._showTypeSlide(-1);
+                break;
+            default:
+                alert('default, fade, slide만 가능합니다.');
+        }
+    },
+    _onClickNextBtn: function(e) {
+        e.preventDefault();    // 클릭한 버튼 기본 기능 막기
+
+        // next index 저장
+        this.nNextIndex = (this.nCurrentIndex < this._welCarouselArticle.length - 1) ? this.nCurrentIndex + 1 : 0;
+
+        // show 처리
+        switch (this.sType) {
+            case 'default':
+                this._showTypeDefault();
+                break;
+            case 'fade':
+                this._showTypeFade();
+                break;
+            case 'slide':
+                this._showTypeSlide(1);
+                break;
+            default:
+                alert('default, fade, slide만 가능합니다.');
+        }
+    },
+    _showTypeDefault: function() {
+        // current index, next index 뷰처리
+        this._welCarouselArticle.eq(this.nNextIndex).show().siblings().hide();
+        
+        // tab, pageNum 셋팅
+        this._setControls();
+
+        // current index 저장
+        this.nCurrentIndex = this.nNextIndex;
+    },
+    _showTypeSlide: function(direction) {
+        if (!this.isAnimated) {
+            var oSelf = this;
+            this.isAnimated = true;
+
+            // current index, next index 뷰처리
+            this._welCarouselArticle.eq(this.nCurrentIndex).animate({'left': -100 * direction + '%'}, 400);
+            this._welCarouselArticle.eq(this.nNextIndex).css('left', 100 * direction + '%').animate({'left': 0}, 400, function () {
+                oSelf.isAnimated = false;
+            });
+            
+            // tab, pageNum 셋팅
+            this._setControls();
+
+            // current index 저장
+            this.nCurrentIndex = this.nNextIndex;
+        }
+    },
+    _showTypeFade: function(direction) {
+        if (!this.isAnimated) {
+            var oSelf = this;
+            this.isAnimated = true;
+
+            // current index, next index 뷰처리
+            this._welCarouselArticle.eq(this.nCurrentIndex).css('z-index', 0).fadeOut(400);
+            this._welCarouselArticle.eq(this.nNextIndex).css('z-index', 50).fadeIn(400, function () {
+                oSelf.isAnimated = false;
+            });
+            
+            // tab, pageNum 셋팅
+            this._setControls();
+
+            // current index 저장
+            this.nCurrentIndex = this.nNextIndex;
+        }
+    },
+    _activeTabList: function() {
+        this._welCarouselTabItem.eq(this.nNextIndex).addClass('active').siblings().removeClass('active');
+    },
+    _setPageNum: function() {
+        this._welCarouselCurrent.text(this.nCurrentIndex + 1);
+        this._welCarouselTotal.text(this._welCarouselTabItem.length);
+    },
+    _setControls: function() {
+        // tab 활성화
+        this._activeTabList();
+        
+        // 페이지번호가 있으면 셋팅
+        if (this.bPageNum) {
+            this._setPageNum();
+        }
+    }
+};
+
+$(function() {
+    var oExamViewCarouselTypeTab = new exam.View.carousel({
+        sTarget: '#box1',
+        sPrefix: '.cast',
+        sType: 'default',
+        bPageNum: true
+    });
+    var oExamViewCarouselTypeSlide = new exam.View.carousel({
+        sTarget: '#box2',
+        sPrefix: '.slide',
+        sType: 'slide',
+        bPageNum: false
+    });
+    var oExamViewCarouselTypeSlide = new exam.View.carousel({
+        sTarget: '#box3',
+        sPrefix: '.slide',
+        sType: 'fade',
+        bPageNum: true
+    });
+});
+</script>
+</body>
+</html>

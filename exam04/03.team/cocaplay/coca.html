@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+<title>exam04 - coca</title>
+<link rel="stylesheet" type="text/css" href="css/coca.css">
+</head>
+<body>
+<div class="evt_wrap">
+	<div class="evt_tit">
+		<div class="tit_area">
+			<h2 class="blind">1등 곰도 맞추고 100% 경품까지 폴라베어를 잡아라!</h2>
+		</div>
+	</div>
+	
+	<div class="evt_ct">
+		<div class="evt_area">
+			<p class="blind">100% 당첨! 가장먼저 도착하는 폴라베어를 맞춰주세요</p>
+			<ul class="bxlst" id="clickLst">
+			<li class="rabx">
+				<input type="radio" name="beautybox" id="bx"/>
+				<label for="bx"><span class="blind">스키타는 베어</span></label>
+			</li>
+			<li class="rabx">
+				<input type="radio" name="beautybox" id="bx2" />
+				<label for="bx2"><span class="blind">보드타는 베어</span></label>
+			</li>
+			<li class="rabx">
+				<input type="radio" name="beautybox" id="bx3"/>
+				<label for="bx3"><span class="blind">스케이트 베어</span></label>
+			</li>
+			</ul>
+			<a href="#" class="btn btn_app">choice</a>
+		</div>
+	</div>
+	
+	<div class="evt_ct2">
+		<ul class="game_area sp" id="gameLst">
+		<li class="lane"><div class="sp gom"></div></li>
+		<li class="lane2"><div class="sp gom"></div></li>
+		<li class="lane3"><div class="sp gom"></div></li>
+		</ul>
+	</div>
+
+	<div style="height:2000px"></div>
+</div>
+
+<script type="text/javascript" src="../../../js/lib/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+var exam = exam || {};
+exam.View = exam.View || {};
+exam.View.game = exam.View.game || {};
+
+exam.View.game.cocaplay = function() {
+	this.init();
+};
+
+exam.View.game.cocaplay.prototype = {
+	bIsWin: false,
+	_bIsAnimated: false,
+	_bIsClear: false,
+	_nCheckedIndex: null,
+	init: function() {
+		this._assignElements();
+		this._attachEventHandlers();
+	},
+	_assignElements: function() {
+		this._welEvtWrap = $('.evt_wrap');
+		this._welClickList = this._welEvtWrap.find('#clickLst');
+		this._welClickListItem = this._welClickList.find('li');
+		this._welClickListInput = this._welClickListItem.find('input');
+		this._welGameList = this._welEvtWrap.find('#gameLst');
+		this._welGameListItem = this._welGameList.find('li');
+		this._welGameListGom = this._welGameListItem.find('.gom');
+		this._welBtnApp = this._welEvtWrap.find('.btn_app');
+	},
+	_attachEventHandlers: function() {
+		this._welBtnApp.on('click', $.proxy(this._onClickBtn, this));
+	},
+	_onClickBtn: function(e) {
+		e.preventDefault();
+
+		this._getSelectIndex();
+
+		if (this._bIsClear) {
+			alert('이미 참여하였습니다.');
+			return false;
+		}
+
+		if (this._bIsAnimated) {
+			return false;
+		}
+
+		if (this._nCheckedIndex === -1) {
+			alert('폴라베어를 선택해주세요.');
+			return false;
+		}
+
+		this._scrollBody();
+	},
+	_getSelectIndex: function() {
+		this._nCheckedIndex = this._welClickListInput.filter(':checked').parent().index();
+	},
+	_scrollBody: function() {
+		var oSelf = this,
+			bFlag = false,
+			nDuration = 400;
+
+		this._bIsAnimated = true;
+
+		$("html, body").animate({scrollTop : this._welGameList.offset().top}, nDuration, function() {
+			if (!bFlag) {
+				oSelf._bIsAnimated = false;
+				oSelf._startPlay();
+			};
+			bFlag = true;
+		});
+	},
+	_startPlay: function() {
+		var oSelectedGom = this._welGameListGom.eq(this._nCheckedIndex),
+			oWinner = '',
+			oLoser = '',
+			nRandom,
+			nDuration = 400;
+
+		// 승자 셋팅
+		if (this.bIsWin) {
+			oWinner = oSelectedGom;
+		} else {
+			nRandom = Math.floor(Math.random() * this._welGameListGom.length - 1);
+			oWinner = this._welGameListGom.not(oSelectedGom).eq(nRandom);
+		}
+
+		// 패자 셋팅
+		oLoser = this._welGameListGom.not(oWinner);
+
+		// 병뚜껑 애니메이션
+		oWinner.animate({'top': 98}, nDuration, function() {
+			$(this).parent().addClass('winlane');
+		});
+		oLoser.animate({'top': 50}, nDuration);
+
+		this._bIsClear = true;
+
+		console.log('선택한 index: ' + this._nCheckedIndex + '\n당첨된 index: ' + this._welGameListGom.index(oWinner));
+	}
+};
+
+$(function() {
+	var oExamViewGameCocaplay = new exam.View.game.cocaplay();
+});
+</script>
+</body>
+</html>
