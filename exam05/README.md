@@ -16,7 +16,8 @@
 
 ### 옵션 값 받아오기
 
-* 옵션 값 받아오기(`$.extend()` 사용)
+* 옵션 값 받아오기
+* `$.extend()` 사용 (두개 이상의 객체 합치기)
 * 참고
   - [jquery api - extend](https://api.jquery.com/jquery.extend/)
 
