@@ -186,7 +186,7 @@ exam.View.layerpopup.prototype = {
         var oSelf = this;
 
         // 타겟레이어 보이고 나서 clickoutside 이벤트 등록
-        // 아래처럼 타겟레이어를 보이고 나서 곧바로 clickoutside 이벤트를 등록하면, 즉시 _onClickClearLayer 이벤트가 실행되어 버림?
+        // 아래처럼 타겟레이어를 보이고 나서 곧바로 clickoutside 이벤트를 등록하면, 즉시 _onClickClearLayer 이벤트가 실행되어 버림
         // this._welTargetLayer.show().on('clickousstside.closeLayer', $.proxy(this._onClickClearLayer, this));
         this._welTargetLayer.show().delay(50).queue(function() {
             var $this = $(this);
@@ -215,14 +215,14 @@ exam.View.layerpopup.prototype = {
         var focusOutTagClass = 'js-focusout',
             focusOutTag = '<span class="' + focusOutTagClass + '" tabindex="0" style="overflow:hidden;position:absolute;left:0;top:0;z-index:-1;width:1px;height:1px;font-size:0;line-height:0"></span>';
 
-            this._welLayerArea.before(focusOutTag);
-            this._welLayerArea.after(focusOutTag);
+        this._welLayerArea.before(focusOutTag);
+        this._welLayerArea.after(focusOutTag);
 
-            this._welPrevFocus = this._welLayerArea.prev();
-            this._welNextFocus = this._welLayerArea.next();
+        this._welPrevFocus = this._welLayerArea.prev();
+        this._welNextFocus = this._welLayerArea.next();
 
-            this._welPrevFocus.on('focusin', $.proxy(this._prevFocusFunc, this));
-            this._welNextFocus.on('focusin', $.proxy(this._nextFocusFunc, this));
+        this._welPrevFocus.on('focusin', $.proxy(this._prevFocusFunc, this));
+        this._welNextFocus.on('focusin', $.proxy(this._nextFocusFunc, this));
     },
     _removeFocusTag: function() {
         this._welPrevFocus.remove();
