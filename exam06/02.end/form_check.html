@@ -75,7 +75,7 @@ p{margin-bottom:30px;padding-bottom:10px;border-bottom:2px solid #da0707;font-si
         </div>
         <div class="box box3">
             <p>3. 셀렉트박스</p>
-            <div class="select_box opened">
+            <div class="select_box">
                 <a href="javascript:;" class="select_menu">선택</a>
                 <ul>
                 <li><a href="#">메뉴 1</a></li>
@@ -159,6 +159,61 @@ exam.View.form.radio.prototype = {
     }
 };
 
+exam.View.form.select = function(htOptions) {
+    $.extend(this, htOptions || {});
+    this.init();
+};
+
+exam.View.form.select.prototype = {
+    sTarget: '.select_box',
+    sActiveClass: 'opened',
+    bOpen: false,
+    init: function() {
+        this._assignElements();
+        this._attachEventHandlers();
+        this._setInitSelct();
+    },
+    _setInitSelct: function() {
+        this._welSelectWrap.removeClass(this.sActiveClass);
+        this._welSelectList.hide();
+    },
+    _assignElements: function() {
+        this._welSelectWrap = $(this.sTarget);
+        this._welSelectBtn = this._welSelectWrap.find('.select_menu');
+        this._welSelectList = this._welSelectWrap.find('ul');
+        this._welSelectItem = this._welSelectList.find('li');
+    },
+    _attachEventHandlers: function() {
+        this._welSelectBtn.on('click', $.proxy(this._onClickSelectBtn, this));
+        this._welSelectItem.on('click', 'a', $.proxy(this._onClickSelectItem, this));
+    },
+    _onClickSelectBtn: function(e) {
+        var oSelf = this;
+
+        this._welSelectList.stop(true, true).slideToggle(100, function () {
+            // active 클래스 처리
+            oSelf._welSelectWrap.toggleClass(oSelf.sActiveClass);
+
+            // outside 이벤트 처리
+            (!oSelf.bOpen) ? oSelf._welSelectWrap.on('clickoutside.closeSelect', $.proxy(oSelf._onClickOutside, oSelf)) : oSelf._welSelectWrap.off('clickoutside.closeSelect');
+            
+            // 오픈상태 변경
+            oSelf.bOpen = !oSelf.bOpen;
+        });
+    },
+    _onClickSelectItem: function(e) {
+        e.preventDefault();
+
+        var currentTarget = $(e.currentTarget),
+            sTargetText = currentTarget.text();
+
+        this._welSelectBtn.text(sTargetText).trigger('click');
+    },
+    _onClickOutside: function() {
+        this._welSelectBtn.trigger('click');
+    }
+};
+
 $(function() {
     var oExamViewFormCheckbox = new exam.View.form.checkbox({
         sActiveClass: 'chk_active'    // 옵션 변경(active 클래스명)
@@ -166,6 +221,7 @@ $(function() {
     var oExamViewFormRadio = new exam.View.form.radio({
         sActiveClass: 'chk_active'    // 옵션 변경(active 클래스명)
     });
+    var oExamViewFormSelect = new exam.View.form.select();
 });
 </script>
 </div>
