@@ -82,7 +82,7 @@ exam.View.sortTable = function(htOptions) {
 };
 
 exam.View.sortTable.prototype = {
-    _aDataType: ['number','string','string'],
+    aDataType: ['number','string','string'],
     _aDefaultData: [],
     _aSortData: [],
     init: function() {
@@ -102,7 +102,7 @@ exam.View.sortTable.prototype = {
         var oSelf = this,
             welTarget = $(e.currentTarget),
             nTargetIndex = welTarget.parent('th').index(),
-            sSortType = this._aDataType[nTargetIndex];
+            sSortType = this.aDataType[nTargetIndex];
 
         // default array 셋팅
         this._aDefaultData = [];    // 초기화
