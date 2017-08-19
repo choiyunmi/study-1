@@ -71,13 +71,73 @@ th,td{height:50px;text-align:center}
     <!-- footer [e] -->
 <!-- [ Javascript Area ] -->
 <!-- Libs -->
-<script src="../js/libs/jquery-1.12.4.min.js"></script>
-<script>
-(function (win, $) {
-    'use strict';
-    $(function () {
-    });
-})(window, window.jQuery);
+<script type="text/javascript" src="../../js/lib/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+var exam = exam || {};
+exam.View = exam.View || {};
+
+exam.View.sortTable = function(htOptions) {
+    $.extend(this, htOptions || {});
+    this.init();
+};
+
+exam.View.sortTable.prototype = {
+    _aDataType: ['number','string','string'],
+    _aDefaultData: [],
+    _aSortData: [],
+    init: function() {
+        this._assignElements();
+        this._attachEventHandlers();
+    },
+    _assignElements: function() {
+        this._welTable = $('table');
+        this._welTableBody = this._welTable.find('tbody');
+        this._welSortBtn = this._welTable.find('.btn_sort');
+    },
+    _attachEventHandlers: function() {
+        this._welSortBtn.on('click', $.proxy(this._onClickSortBtn, this));
+    },
+    _onClickSortBtn: function(e) {
+        e.preventDefault();
+        var oSelf = this,
+            welTarget = $(e.currentTarget),
+            nTargetIndex = welTarget.parent('th').index(),
+            sSortType = this._aDataType[nTargetIndex];
+
+        // default array 셋팅
+        this._aDefaultData = [];    // 초기화
+        this._welTableBody.children().filter(function () {
+            oSelf._aDefaultData.push($(this).find('td').eq(nTargetIndex).text());
+        });
+        // sort array 셋팅
+        this._aSortData = this._aDefaultData.slice();
+
+        // sort array 정렬
+        this._sortTableRow(sSortType);
+
+        // table 변경
+        this._setTableData();
+    },
+    _sortTableRow: function(sSortType) {
+        (sSortType === 'string') ? this._aSortData.sort() : this._aSortData.sort(function (a, b) {return a - b});
+    },
+    _setTableData: function() {
+        var aResult = [],
+            welTableRow = this._welTableBody.find('tr');
+
+        for (var i = 0, max = this._aDefaultData.length; i < max; i++){
+            aResult[i] = $.inArray(this._aSortData[i], this._aDefaultData);
+        }
+
+        for (var key in aResult) {
+            this._welTableBody.find('tr').last().after(welTableRow.eq(aResult[key]));
+        }
+    }
+};
+
+$(function() {
+    var oExamViewSortTable = new exam.View.sortTable();
+});
 </script>
 </div>
 </body>
