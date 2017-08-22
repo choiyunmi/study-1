@@ -4,7 +4,7 @@
 
 ### toggleClass
 
-- toggleClass로 addClass, removeClass 한번에 처리 가능
+* toggleClass로 addClass, removeClass 한번에 처리 가능
 
 ```javascript
 // addClass, removeClass 사용
@@ -24,6 +24,34 @@ welTarget.parent(this.sTarget).toggleClass(this.sActiveClass, welTarget.is(':che
   * [jquery api - toggleClass](http://api.jquery.com/toggleclass/#toggleClass-className-state)
   * `state` 값이 true이면 addClass(className)
   * `state` 값이 false이면 removeClass(className)
+
+<br>
+
+### form
+
+* 이벤트 처리는 input을 대상으로 change 이벤트가 발생할 때
+* checkbox, radio는 플러그인화 불필요
+
+```javascript
+// checkbox
+$('.check_box').on('change', 'input[type=checkbox]', function () {
+    $(this).parent('.check_box').toggleClass('chk_active', $(this).prop('checked'));
+});
+
+// radio
+$('.radio_box').on('change', 'input[type=radio]', function () {
+    var sTargetName = $(this).attr('name'),
+        sTargetGroup = $('input[type=radio]').attr('name', sTargetName);
+
+    sTargetGroup.each(function () {
+        $(this).parent('.radio_box').toggleClass('chk_active', $(this).prop('checked'));
+    });
+});
+```
+
+### .is(':checked'), .prop('checked') 차이
+
+* [jquery api - prop](https://api.jquery.com/prop/)
 
 <br>
 
