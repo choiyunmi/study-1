@@ -49,6 +49,8 @@ $('.radio_box').on('change', 'input[type=radio]', function () {
 });
 ```
 
+<br>
+
 ### .is(':checked'), .prop('checked') 차이
 
 * [jquery api - prop](https://api.jquery.com/prop/)
