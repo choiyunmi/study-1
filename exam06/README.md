@@ -7,7 +7,7 @@
 - toggleClass로 addClass, removeClass 한번에 처리 가능
 
 ```javascript
-// toggleClass 미사용
+// addClass, removeClass 사용
 if (welTarget.is(':checked')) {
   welTarget.parent(this.sTarget).addClass(this.sActiveClass);
 } else {
@@ -22,7 +22,8 @@ welTarget.parent(this.sTarget).toggleClass(this.sActiveClass, welTarget.is(':che
 
 * toggleClass(className, state)
   * [jquery api - toggleClass](http://api.jquery.com/toggleclass/#toggleClass-className-state)
-* state값이 true이면 addClass, false이면 removeClass
+  * `state` 값이 true이면 addClass(className)
+  * `state` 값이 false이면 removeClass(className)
 
 
 
@@ -30,13 +31,14 @@ welTarget.parent(this.sTarget).toggleClass(this.sActiveClass, welTarget.is(':che
 
 * 현재 움직이고 있는 애니메이션 효과를 멈춤
 
+  * 애니메이션 효과 전에 사용
+
 * .stop( \[clearQueue\] \[, jumpToEnd\] )
 
   * [jquery api - stop](http://api.jquery.com/stop/#stop-clearQueue-jumpToEnd)
   * `clearQueue` : boolean 값을 세팅하여 대기중인 효과들의 제거를 결정합니다. 기본값은 false.
   * `jumpToEnd` : boolean 값을 세팅하여 현재 진행중인 애니메이션을 완료할지를 결정합니다. 기본값은 false.
 
-  ​
 
 ### event.namespace
 
