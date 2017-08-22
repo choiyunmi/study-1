@@ -56,6 +56,14 @@ $('.radio_box').on('change', 'input[type=radio]', function () {
 * [jquery api - is](https://api.jquery.com/is/)
 * [jquery api - prop](https://api.jquery.com/prop/)
 
+```javascript
+// is
+$(this).parent('.check_box').toggleClass('chk_active', $(this).is(':checked'));
+
+// prop
+$(this).parent('.check_box').toggleClass('chk_active', $(this).prop('checked'));
+```
+
 <br>
 
 ### stop
