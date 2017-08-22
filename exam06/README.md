@@ -31,6 +31,7 @@ welTarget.parent(this.sTarget).toggleClass(this.sActiveClass, welTarget.is(':che
 
 * 이벤트 처리는 input을 대상으로 change 이벤트가 발생할 때
 * checkbox, radio는 플러그인화 불필요
+  * this로 받아와서 사용 가능
 
 ```javascript
 // checkbox
