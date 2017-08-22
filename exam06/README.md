@@ -25,7 +25,7 @@ welTarget.parent(this.sTarget).toggleClass(this.sActiveClass, welTarget.is(':che
   * `state` 값이 true이면 addClass(className)
   * `state` 값이 false이면 removeClass(className)
 
-
+<br>
 
 ### stop
 
@@ -39,6 +39,7 @@ welTarget.parent(this.sTarget).toggleClass(this.sActiveClass, welTarget.is(':che
   * `clearQueue` : boolean 값을 세팅하여 대기중인 효과들의 제거를 결정합니다. 기본값은 false.
   * `jumpToEnd` : boolean 값을 세팅하여 현재 진행중인 애니메이션을 완료할지를 결정합니다. 기본값은 false.
 
+<br>
 
 ### event.namespace
 
