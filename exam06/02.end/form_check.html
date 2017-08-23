@@ -85,6 +85,18 @@ p{margin-bottom:30px;padding-bottom:10px;border-bottom:2px solid #da0707;font-si
                 </ul>
             </div>
         </div>
+        <div class="box box3">
+            <p>3. 셀렉트박스</p>
+            <div class="select_box">
+                <a href="javascript:;" class="select_menu">선택</a>
+                <ul>
+                <li><a href="#">메뉴 1</a></li>
+                <li><a href="#">메뉴 2</a></li>
+                <li><a href="#">메뉴 3</a></li>
+                <li><a href="#">메뉴 4</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
     <!-- container [e] -->
     <hr />
@@ -97,16 +109,13 @@ p{margin-bottom:30px;padding-bottom:10px;border-bottom:2px solid #da0707;font-si
 <script type="text/javascript">
 //clickout
 (function($,c,b){$.map("click dblclick mousemove mousedown mouseup mouseover mouseout change select submit keydown keypress keyup".split(" "),function(d){a(d)});a("focusin","focus"+b);a("focusout","blur"+b);$.addOutsideEvent=a;function a(g,e){e=e||g+b;var d=$(),h=g+"."+e+"-special-event";$.event.special[e]={setup:function(){d=d.add(this);if(d.length===1){$(c).bind(h,f)}},teardown:function(){d=d.not(this);if(d.length===0){$(c).unbind(h)}},add:function(i){var j=i.handler;i.handler=function(l,k){l.target=k;j.apply(this,arguments)}}};function f(i){$(d).each(function(){var j=$(this);if(this!==i.target&&!j.has(i.target).length){j.triggerHandler(e,[i.target])}})}}})(jQuery,document,"outside");
-
 var exam = exam || {};
 exam.View = exam.View || {};
 exam.View.form = exam.View.form || {};
-
 exam.View.form.checkbox = function(htOptions) {
     $.extend(this, htOptions || {});
     this.init();
 };
-
 exam.View.form.checkbox.prototype = {
     sTarget: '.check_box',
     sActiveClass: 'checked',
@@ -123,16 +132,13 @@ exam.View.form.checkbox.prototype = {
     },
     _onChangeCheckbox: function(e) {
         var welTarget = $(e.currentTarget);
-
         welTarget.parent(this.sTarget).toggleClass(this.sActiveClass, welTarget.is(':checked'));
     }
 };
-
 exam.View.form.radio = function(htOptions) {
     $.extend(this, htOptions || {});
     this.init();
 };
-
 exam.View.form.radio.prototype = {
     sTarget: '.radio_box',
     sActiveClass: 'checked',
@@ -152,18 +158,15 @@ exam.View.form.radio.prototype = {
             welTarget = $(e.currentTarget),
             sTargetName = welTarget.attr('name'),
             sTargetGroup = this._welInput.attr('name', sTargetName);
-
         sTargetGroup.each(function () {
             $(this).parent(oSelf.sTarget).toggleClass(oSelf.sActiveClass, $(this).is(':checked'));
         });
     }
 };
-
 exam.View.form.select = function(htOptions) {
     $.extend(this, htOptions || {});
     this.init();
 };
-
 exam.View.form.select.prototype = {
     sTarget: '.select_box',
     sActiveClass: 'opened',
@@ -189,11 +192,9 @@ exam.View.form.select.prototype = {
     },
     _onClickSelectBtn: function(e) {
         var oSelf = this;
-
-        this._welSelectList.stop(true, true).slideToggle(500, function () {
+        this._welSelectList.stop(true, true).slideToggle(100, function () {
             // active 클래스 처리
             oSelf._welSelectWrap.toggleClass(oSelf.sActiveClass);
-
             // outside 이벤트 처리
             (!oSelf.bOpen) ? oSelf._welSelectWrap.on('clickoutside.closeSelect', $.proxy(oSelf._onClickOutside, oSelf)) : oSelf._welSelectWrap.off('clickoutside.closeSelect');
             
@@ -203,10 +204,8 @@ exam.View.form.select.prototype = {
     },
     _onClickSelectItem: function(e) {
         e.preventDefault();
-
         var currentTarget = $(e.currentTarget),
             sTargetText = currentTarget.text();
-
         this._welSelectBtn.text(sTargetText).trigger('click');
     },
     _onClickOutside: function() {
@@ -214,14 +213,25 @@ exam.View.form.select.prototype = {
     }
 };
 
+$.fn.oExamViewFormSelect = function () {
+    for (var i = 0, max = this.length; i < max; i++) {
+        new exam.View.form.select({
+            sTarget: this.eq(i)
+        });
+    }
+};
+
 $(function() {
     var oExamViewFormCheckbox = new exam.View.form.checkbox({
         sActiveClass: 'chk_active'    // 옵션 변경(active 클래스명)
     });
+    
     var oExamViewFormRadio = new exam.View.form.radio({
         sActiveClass: 'chk_active'    // 옵션 변경(active 클래스명)
     });
-    var oExamViewFormSelect = new exam.View.form.select();
+
+    // var oExamViewFormSelect = new exam.View.form.select();
+    $('.select_box').oExamViewFormSelect();
 });
 </script>
 </div>
