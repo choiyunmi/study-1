@@ -196,7 +196,7 @@ exam.View.form.select.prototype = {
             // active 클래스 처리
             oSelf._welSelectWrap.toggleClass(oSelf.sActiveClass);
             // outside 이벤트 처리
-            (!oSelf.bOpen) ? oSelf._welSelectWrap.on('clickoutside.closeSelect', $.proxy(oSelf._onClickOutside, oSelf)) : oSelf._welSelectWrap.off('clickoutside.closeSelect');
+            (!oSelf.bOpen) ? oSelf._welSelectWrap.one('clickoutside.closeSelect', $.proxy(oSelf._onClickOutside, oSelf)) : oSelf._welSelectWrap.off('clickoutside.closeSelect');
             
             // 오픈상태 변경
             oSelf.bOpen = !oSelf.bOpen;
