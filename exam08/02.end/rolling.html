@@ -81,7 +81,7 @@ table{border-collapse:collapse;border-spacing:0}
         },
         _nCurrentIndex: 0,
         init: function() {
-            this._htOptions = $.extend({}, this._htDefault, this.htOptions);
+            this.options = $.extend({}, this._htDefault, this.htOptions);
 
             this._assignElements();
             this._attachEventHandlers();
@@ -107,9 +107,10 @@ table{border-collapse:collapse;border-spacing:0}
         },
         _runningTimer: function() {
             var oSelf = this;
+
             this._oTimer = window.setInterval(function() {
                 oSelf._setPositionTop();
-            }, this._htOptions.pause);
+            }, this.options.pause);
         },
         _clearTimer: function() {
             window.clearInterval(this._oTimer);
@@ -117,9 +118,9 @@ table{border-collapse:collapse;border-spacing:0}
         },
         _setPositionTop: function() {
             var oSelf = this;
+
             this._nCurrentIndex++;
- 
-            this._welRollingList.animate({'top': -this._nItemHeight * this._nCurrentIndex}, this._htOptions.speed, function() {
+            this._welRollingList.animate({'top': -this._nItemHeight * this._nCurrentIndex}, this.options.speed, function() {
                 if (oSelf._nCurrentIndex > oSelf._welRollingListItem.length - 1) {
                     oSelf._nCurrentIndex = 0;
                     oSelf._welRollingList.css({'top': 0});
@@ -142,7 +143,8 @@ table{border-collapse:collapse;border-spacing:0}
         var oExamViewrollingList = new exam.View.rollingList({
             sTarget: $('#realtime'),
             htOptions: {
-                speed: 200
+                speed: 200,
+                pause: 2000
             }
         });
     });
