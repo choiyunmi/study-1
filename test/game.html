@@ -33,8 +33,8 @@
 	/* 순위 TABLE */
 	.evt_wrap .evt_table{padding:0 8.26%}
 	.evt_wrap .evt_table table{table-layout:fixed;width:100%;border-collapse:separate;border-spacing:1px}
-	.evt_wrap .evt_table th,.evt_wrap .evt_table td{padding:1.3% 0;font-family:'Roboto-Medium','AppleSDGothicNeo-Regular',sans-serif;font-size:14px;font-size:3.6vw;line-height:2}
-	.evt_wrap .evt_table span{display:block;overflow:hidden;padding:0 10%;text-overflow:ellipsis;white-space:nowrap}
+	.evt_wrap .evt_table th,.evt_wrap .evt_table td{padding:1.3% 2.4%;font-family:'Roboto-Medium','AppleSDGothicNeo-Regular',sans-serif;font-size:14px;font-size:3.6vw;line-height:2;text-align:center}
+	.evt_wrap .evt_table th span,.evt_wrap .evt_table td span{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 	.evt_wrap .evt_bg{background:url(http://static.ssgcdn.com/ui/ssg/img/promotion/2017/171218_ssgland/mobile/m_bg01.png) repeat-y;background-size:100% auto}
 	.evt_wrap .evt_bg2{background:#fae397 url(http://static.ssgcdn.com/ui/ssg/img/promotion/2017/171218_ssgland/mobile/m_bg02.jpg) no-repeat;background-size:100% auto}
 	/* 모달팝업 */
@@ -81,7 +81,7 @@
 						<div class="img"><img src="http://static.ssgcdn.com/ui/ssg/img/promotion/2017/171218_ssgland/mobile/m_img_step2.jpg" alt=""></div>
 						<div class="img"><img src="http://static.ssgcdn.com/ui/ssg/img/promotion/2017/171218_ssgland/mobile/m_img_step1.jpg" alt=""></div>
 					</div>
-					<button type="button" id="_btn_click" class="btn_click"><span class="blind">귤 까기</span></button>
+					<!-- <button type="button" id="_btn_click" class="btn_click"><span class="blind">귤 까기</span></button> -->
 				</div>
 				<div class="evt">
 					<p class="evt_game_tx">
@@ -114,17 +114,11 @@
         $(function(){
             var oSsgViewGameClickCounter = new ssg.View.game.clickCounter({'nSeconds': 10});
 
-            // var bIsPlaying = false;
-
             $('#_btn_start').on('click', function(){
-                // if(!bIsPlaying) {
-                    // bIsPlaying = true;
+                $('#_before, #_play, #_after').hide();
+                $('#_play').show();
 
-                    $('#_before, #_play, #_after').hide();
-                    $('#_play').show();
-
-                    oSsgViewGameClickCounter.start();
-                // }
+                oSsgViewGameClickCounter.start();
             });
 
             oSsgViewGameClickCounter.on('end.clickCounter', function(){
